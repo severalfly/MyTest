@@ -1,0 +1,20 @@
+<div>
+	<h1>标题：<a href="/show_{{article.id}}">{{article.title}}</a></h1>
+	<div class="content">
+		{{article.content}}
+	</div>
+</div>
+
+<h3>评论</h3>
+{% for comment in comments%}
+	<p>
+		{{comment.detail}}
+	</p>
+{%endfor%}
+
+
+<form action="/comment/add/" method="post">
+	<p>内容：<textarea name="detail"></textarea></p>
+	<input type="hidden" name="article" value="{{article.id}}">
+	<p><input type="submit" value="添加评论" /></p>
+</form>

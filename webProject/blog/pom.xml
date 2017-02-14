@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.leon.blog</groupId>
+  <artifactId>blog</artifactId>
+  <version>1</version>
+  <packaging>war</packaging>
+
+  <name>blog</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <build>
+    <plugins>
+       <!-- 更改maven默认的打包目录 -->
+        <plugin>
+           <artifactId>maven-war-plugin</artifactId>
+           <configuration>
+               <webappDirectory>${basedir}/src/main/webapp</webappDirectory>
+               <warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+           </configuration>
+       </plugin>      
+    </plugins>
+  </build>
+
+  <dependencies>
+    <!-- 添加junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- 添加Servlet -->  
+    <dependency>    
+        <groupId>javax.servlet</groupId>    
+        <artifactId>servlet-api</artifactId>    
+        <version>2.5</version>    
+        <scope>provided</scope>    
+    </dependency>
+  </dependencies>
+</project>

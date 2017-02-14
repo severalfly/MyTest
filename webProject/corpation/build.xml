@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="javaWeb" basedir="." default="all">
+        <property name="webapps.dir" value="D:\work\apache-tomcat-8.0.24\webapps\"/>
+        <path id="classpath">
+                <fileset dir="./WebRoot/WEB-INF/lib">
+                        <include name="**/*.jar" />
+                </fileset>
+        </path>
+
+        <target name="prepare" description="prepare ">
+                <mkdir dir="dist/tmp" />
+                <mkdir dir="dist/module" />
+                <mkdir dir="dist/war" />   
+                <mkdir dir="WebRoot/WEB-INF/classes" />            
+        </target>
+
+        <target name="compile" > 
+                <mkdir dir="WebRoot/WEB-INF/classes"/>
+                <javac 
+                        debug="true" 
+                        fork="yes" destdir="WebRoot/WEB-INF/classes" encoding="UTF-8" classpathref="classpath">
+                        <src path="src"></src>
+                </javac>
+                
+                <copy todir="WebRoot/WEB-INF/classes">
+                        <fileset dir="src" includes="**/*.xml" excludes="**/*.java"></fileset>                        
+                </copy>
+                
+        </target>
+        
+        <target name="jar-web" description="web jar">
+                <delete dir="dist/tmp" />
+                <mkdir dir="dist/tmp" />
+                <delete file="dist/war/javaWeb-web.jar" />
+                <javac srcdir="src/" includes="com/leon/loco/**/*.*,com/leon/loco/**/**/*.*" debug="true" fork="yes" destdir="dist/tmp" classpathref="classpath" encoding="UTF-8" includeantruntime="on"/>
+                <jar destfile="dist/war/javaWeb-web.jar" update="true">
+                        <fileset dir="dist/tmp" includes="**/*.*" />
+                </jar>
+        </target>
+        
+        <target name="war" description="war corpation" depends="compile">
+                <delete dir="${webapps.dir}/corpation" />
+                
+                <delete file="${webapps.dir}/corpation.war" />
+                <copy todir="WebRoot/WEB-INF/lib">
+                        <fileset dir="dist/war"/>
+                </copy>
+                <war warfile="${webapps.dir}/corpation.war"
+                        includes="**/*.*"
+                        
+                        webxml="WebRoot/WEB-INF/web.xml" 
+                        update="true" 
+                        basedir="WebRoot"/>
+                <delete file="WebRoot/WEB-INF/lib/corpation-web.jar" />        
+        </target>
+        
+
+        <target name="all"  depends="prepare, jar-web, war">
+        </target>
+
+</project>

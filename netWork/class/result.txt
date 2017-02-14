@@ -1,0 +1,12 @@
+<div><a href="dis.do?pid=010101" class="c">北京</a>|<a href="dis.do?pid=010126" class="c">上海</a>|<a href="dis.do?pid=010129" class="c">天津</a></div>
+<div><a href="dis.do?pid=010104" class="c">重庆</a>|<a href="dis.do?pid=010116" class="c">吉林</a>|<a href="dis.do?pid=010113" class="c">黑龙江</a></div>
+<div><a href="dis.do?pid=010119" class="c">辽宁</a>|<a href="dis.do?pid=010120" class="c">内蒙古</a>|<a href="dis.do?pid=010132" class="c">新疆</a></div>
+<div><a href="dis.do?pid=010121" class="c">宁夏</a>|<a href="dis.do?pid=010122" class="c">青海</a>|<a href="dis.do?pid=010106" class="c">甘肃</a></div>
+<div><a href="dis.do?pid=010125" class="c">陕西</a>|<a href="dis.do?pid=010130" class="c">西藏</a>|<a href="dis.do?pid=010127" class="c">四川</a></div>
+<div><a href="dis.do?pid=010109" class="c">贵州</a>|<a href="dis.do?pid=010133" class="c">云南</a>|<a href="dis.do?pid=010124" class="c">山西</a></div>
+<div><a href="dis.do?pid=010111" class="c">河北</a>|<a href="dis.do?pid=010123" class="c">山东</a>|<a href="dis.do?pid=010112" class="c">河南</a></div>
+<div><a href="dis.do?pid=010102" class="c">安徽</a>|<a href="dis.do?pid=010117" class="c">江苏</a>|<a href="dis.do?pid=010114" class="c">湖北</a></div>
+<div><a href="dis.do?pid=010115" class="c">湖南</a>|<a href="dis.do?pid=010118" class="c">江西</a>|<a href="dis.do?pid=010134" class="c">浙江</a></div>
+<div><a href="dis.do?pid=010105" class="c">福建</a>|<a href="dis.do?pid=010128" class="c">台湾</a>|<a href="dis.do?pid=010108" class="c">广西</a></div>
+<div><a href="dis.do?pid=010110" class="c">海南</a>|<a href="dis.do?pid=010107" class="c">广东</a>|<a href="dis.do?pid=010131" class="c">香港</a></div>
+<div><a href="dis.do?pid=010103" class="c">澳门</a></div>

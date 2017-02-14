@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+	
+	 <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        
+        <action name="test" class="com.leon.loco.action.Test">
+        	<result name="success">/index.jsp</result>
+        </action>
+        <action name="addVote" class="com.leon.loco.action.addVote">
+            <result name="success">/admin/addVote.jsp</result>
+        </action> 
+
+
+        <action name="showVote" class="com.leon.loco.action.ShowVoteAction">
+            <result name="success">/admin/showVote.jsp</result>
+        </action> 
+
+        <action name="deleteVote" class="com.leon.loco.action.DeleteVoteAction">
+            <result name="success" type="chain">showVote</result>
+        </action>
+
+        <action name="showVoteByChannel" class="com.leon.loco.action.ShowVoteByChannelAction">
+        	<result name="success">/showVoteByChannel.jsp</result>
+        </action>
+    
+	
+	
+	
+	
+	
+    </package>
+   
+
+</struts>

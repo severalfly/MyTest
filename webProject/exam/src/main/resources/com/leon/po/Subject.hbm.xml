@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping 
+			PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.leon.po.Subject" table="tb_subject"><!-- 每个class对应一个持久化对象 -->
+		<id name="subjectID" column="subject_id"><!-- id元素用来定义主键标识,并指定主键生成策略 -->
+			<generator class="identity"></generator>
+		</id>
+		<property name="subjectTitle" column="subject_title"></property>	<!-- 映射subjectTitle属性 -->
+		<property name="subjectOptionA" column="subject_option_a"></property>	<!-- 映射subjectOptionA属性 -->
+		<property name="subjectOptionB" column="subject_option_b"></property>	<!-- 映射subjectOptionB属性 -->
+		<property name="subjectOptionC" column="subject_option_c"></property>	<!-- 映射subjectOptionC属性 -->
+		<property name="subjectOptionD" column="subject_option_d"></property>	<!-- 映射subjectOptionD属性 -->
+		<property name="subjectAnswer" column="subject_answer"></property>	<!-- 映射subjectAnswer属性 -->
+		<property name="subjectParse" column="subject_parse"></property>	<!-- 映射subjectParse属性 -->
+	</class>
+</hibernate-mapping>

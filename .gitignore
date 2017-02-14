@@ -1,0 +1,9 @@
+*.class
+*.project
+*.classpath
+*.metadata
+*.sqlite3
+*.jar
+.stackdump
+*.war
+webProject/exam/target/*

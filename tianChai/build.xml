@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="vote" basedir="." default="all">
+        <property name="webapps.dir" value="D:\work\apache-tomcat-8.0.24\webapps"/>
+        <property name="class.dir" value="classes"/>
+        <path id="classpath">
+                <fileset dir="./lib">
+                        <include name="**/*.jar" />
+                </fileset>
+        </path>
+
+        <target name="prepare" description="prepare ">
+                <mkdir dir="classe.dir" />            
+        </target>
+
+        <target name="clean" description="clean ">
+                <delete dir="WebRoot/WEB-INF/classes" />
+                     
+        </target>
+
+
+
+        <target name="compile" > 
+                <mkdir dir="classe.dir"/>
+                <javac 
+                        debug="true" 
+                        fork="yes" destdir="classe.dir" encoding="UTF-8" classpathref="classpath">
+                        <src path="src"></src>
+                </javac>
+                
+                <copy todir="classe.dir">
+                        <fileset dir="src" includes="**/*.xml,**/*.properties" excludes="**/*.java"></fileset>                        
+                </copy>
+                
+        </target>
+
+</project>

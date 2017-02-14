@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+
+<!DOCTYPE struts PUBLIC  
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+"http://struts.apache.org/dtds/struts-2.3.dtd">  
+
+<struts>  
+
+    <constant name="struts.i18n.reload" value="false" />  
+    <constant name="struts.devMode" value="false" />  
+
+ 
+
+    <package name="default" extends="struts-default" namespace="/">  
+
+        <action name="subjectQuery" class="com.leon.action.SubjectQueryAction">
+            <result name="success">/teacher/subjectQuery.jsp</result>
+        </action>
+
+        <action name="subjectAdd" class="com.leon.action.SubjectAddAction">
+            <result name="success" type="redirect">/teacher/subjectAdd.jsp</result>
+            <result name="input">/teacher/subjectAdd.jsp</result>
+        </action>
+
+        <action name="subjectParticular" class="com.leon.action.SubjectParticularAction">
+            <result name="success">/teacher/subjectShow.jsp</result>
+        </action>
+
+
+        <action name="subjectUpdate" class="com.leon.action.SubjectUpdateAction">
+            <result name="success">/teacher/subjectUpdate.jsp</result>
+        </action>
+
+        <action name="subjectUpdateBefore" class="com.leon.action.SubjectUpdateBefore">
+            <result name="success">/teacher/subjectUpdate.jsp</result>
+        </action>
+
+        <action name="subjectDelete" class="com.leon.action.SubjectDeleteAction">
+            <result name="success" type="chain">subjectQuery</result>
+        </action>
+
+        <action name="queryStudent" class="com.leon.action.StudentQueryByNameAction">
+            <result name="success">/student/studenQueryShow.jsp</result>
+        </action>
+        
+        <action name="queryStudentByClass" class="com.leon.action.StudentQueryByClassAction">
+            <result name="success">/student/studenQueryShow.jsp</result>
+        </action>
+
+        <action name="login" class="com.leon.action.LoginAction">
+            <result name="studentSuccess" type="chain">getRandomSubject</result>
+            <result name="teacherSuccess" type="redirect">/index.jsp</result>
+            <result name="input">/login.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="getRandomSubject" class="com.leon.action.GetRandomSubject">
+            <result name="success">/student/index.jsp</result>
+        </action>
+
+    </package>  
+
+</struts>  
