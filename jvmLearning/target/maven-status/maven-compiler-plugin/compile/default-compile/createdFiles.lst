@@ -1,6 +1,7 @@
 org\fenixsoft\classloading\ClassLoaderTest$1.class
-org\fenixsoft\classloading\ClassLoaderTest.class
-org\fenixsoft\classloading\SubClass.class
 org\fenixsoft\clazz\TestClass.class
 org\fenixsoft\classloading\NotInitialization.class
+org\fenixsoft\classloading\StaticResolution.class
 org\fenixsoft\classloading\SupperClass.class
+org\fenixsoft\classloading\ClassLoaderTest.class
+org\fenixsoft\classloading\SubClass.class

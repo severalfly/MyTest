@@ -48,7 +48,7 @@
                             <transformers>
                                 <transformer
                                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.fenixsoft.classloading.ClassLoaderTest</mainClass>
+                                    <mainClass>org.fenixsoft.classloading.StaticResolution</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

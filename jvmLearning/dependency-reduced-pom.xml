@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.fenixsoft.classloading.ClassLoaderTest</mainClass>
+                  <mainClass>org.fenixsoft.classloading.StaticResolution</mainClass>
                 </transformer>
               </transformers>
             </configuration>
