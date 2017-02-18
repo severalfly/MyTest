@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.fenixsoft.classloading.StaticResolution</mainClass>
+                  <mainClass>org.fenixsoft.classloading.Dispatch</mainClass>
                 </transformer>
               </transformers>
             </configuration>

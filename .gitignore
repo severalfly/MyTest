@@ -7,3 +7,4 @@
 .stackdump
 *.war
 webProject/exam/target/*
+*.lst
