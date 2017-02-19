@@ -13,7 +13,7 @@ def main():
     width = 1
 
 
-    pygame.gfxdraw.aacircle(s, 200, 200, 100, (0, 0, 255))
+    pygame.gfxdraw.aaellipse(s, 200, 200, 100, 50, (0, 0, 255))
 
     screen.blit(s, (0, 0))
 
