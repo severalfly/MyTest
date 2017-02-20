@@ -1,6 +1,7 @@
 org\fenixsoft\classloading\ClassLoaderTest$1.class
 org\fenixsoft\classloading\Dispatch.class
 org\fenixsoft\classloading\NotInitialization.class
+org\leon\thread\VolatileTest$1.class
 org\fenixsoft\classloading\Dispatch$_360.class
 org\fenixsoft\classloading\Calc.class
 org\fenixsoft\classloading\Dispatch$Son.class
@@ -10,6 +11,7 @@ org\fenixsoft\classloading\DynamicDispatch$Human.class
 org\fenixsoft\classloading\DynamicDispatch$Woman.class
 org\fenixsoft\clazz\TestClass.class
 org\fenixsoft\classloading\StaticResolution.class
+org\leon\thread\VolatileTest.class
 org\fenixsoft\classloading\ClassLoaderTest.class
 org\fenixsoft\classloading\SubClass.class
 org\fenixsoft\classloading\DynamicDispatch.class

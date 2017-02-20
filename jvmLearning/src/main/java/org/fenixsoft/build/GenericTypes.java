@@ -10,7 +10,7 @@ public class GenericTypes
 		return "";
 	}
 
-	public static int method(List<Integer> list)
+	public static int methods(List<Integer> list)
 	{
 		System.out.println("invoke method(List<Integer> list)");
 		return 0;
