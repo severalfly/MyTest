@@ -1,3 +1,4 @@
+*.lst
 *.class
 *.project
 *.classpath
@@ -7,4 +8,5 @@
 .stackdump
 *.war
 webProject/exam/target/*
-*.lst
+jvmLearning/target/*
+springLearning/spring-book-ch2/target/*
