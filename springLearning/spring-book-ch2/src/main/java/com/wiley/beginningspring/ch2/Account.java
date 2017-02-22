@@ -1,4 +1,4 @@
-package com.wiley.beginning.spring.ch2;
+package com.wiley.beginningspring.ch2;
 
 import java.util.Date;
 

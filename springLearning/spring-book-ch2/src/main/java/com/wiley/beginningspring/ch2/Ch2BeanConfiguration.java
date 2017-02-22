@@ -1,4 +1,4 @@
-package com.wiley.beginning.spring.ch2;
+package com.wiley.beginningspring.ch2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

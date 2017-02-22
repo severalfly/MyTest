@@ -43,7 +43,7 @@
                <configuration>
                      <transformers>
                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                        <mainClass>com.wiley.beginning.spring.ch2.Main</mainClass>
+                        <mainClass>com.wiley.beginningspring.ch2.Main</mainClass>
                       </transformer>
                      </transformers>
                </configuration>
