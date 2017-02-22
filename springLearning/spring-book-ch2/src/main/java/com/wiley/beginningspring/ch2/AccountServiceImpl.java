@@ -10,13 +10,13 @@ public class AccountServiceImpl implements AccountService
 
 	public AccountDao getAccountDao()
 	{
-	    return this.accountDao;
+		return this.accountDao;
 	}
-	
+
 	@Autowired
 	public void setAccountDao(AccountDao accountDao)
 	{
-	    this.accountDao = accountDao;
+		this.accountDao = accountDao;
 	}
 
 	public void transferMoney(long sourceAccountId, long targetAccountId, double amount)
@@ -40,5 +40,5 @@ public class AccountServiceImpl implements AccountService
 	{
 		return accountDao.find(accountId);
 	}
-	
+
 }

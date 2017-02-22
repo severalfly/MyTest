@@ -13,7 +13,7 @@ public class Ch2BeanConfiguration
 		bean.setAccountDao(accountDao());
 		return bean;
 	}
-	
+
 	@Bean
 	public AccountDao accountDao()
 	{

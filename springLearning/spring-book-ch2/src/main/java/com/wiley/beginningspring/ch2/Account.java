@@ -9,56 +9,44 @@ public class Account
 	private double balance;
 	private Date accessTime;
 
-
 	public long getId()
 	{
-	    return this.id;
+		return this.id;
 	}
-
 
 	public void setId(long id)
 	{
-	    this.id = id;
+		this.id = id;
 	}
-
 
 	public String getOwnerName()
 	{
-	    return this.ownerName;
-	}
-	
-	
-	public void setOwnerName(String ownerName)
-	{
-	    this.ownerName = ownerName;
+		return this.ownerName;
 	}
 
+	public void setOwnerName(String ownerName)
+	{
+		this.ownerName = ownerName;
+	}
 
 	public double getBalance()
 	{
-	    return this.balance;
+		return this.balance;
 	}
-	
-	
+
 	public void setBalance(double balance)
 	{
-	    this.balance = balance;
+		this.balance = balance;
 	}
-	
 
 	public Date getAccessTime()
 	{
-	    return this.accessTime;
+		return this.accessTime;
 	}
-	
-	
+
 	public void setAccessTime(Date accessTime)
 	{
-	    this.accessTime = accessTime;
+		this.accessTime = accessTime;
 	}
-	
-	
-	
 
-	
 }
