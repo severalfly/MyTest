@@ -1,12 +1,14 @@
 package com.wiley.beginningspring.ch2;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main
 {
 	public static void main(String[] args)
 	{
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Ch2BeanConfiguration.class);
+//		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Ch2BeanConfiguration.class);
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("/com/wiley/beginningspring/ch2/ch2-beans.xml");
 		AccountService accountService = applicationContext.getBean("accountService", AccountService.class);
 		
 		System.out.println("Before money transfre");
