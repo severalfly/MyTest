@@ -1,4 +1,4 @@
-package mythread;
+package org.leon.thread;
 
 public class Mythread extends Thread
 {

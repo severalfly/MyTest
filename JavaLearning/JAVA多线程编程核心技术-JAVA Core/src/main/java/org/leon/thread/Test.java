@@ -1,6 +1,4 @@
-package test;
-
-import mythread.Mythread;
+package org.leon.thread;
 
 public class Test
 {
