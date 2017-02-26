@@ -10,3 +10,4 @@
 webProject/exam/target/*
 jvmLearning/target/*
 springLearning/spring-book-ch2/target/*
+**dependency-reduced-pom.xml
