@@ -8,4 +8,6 @@ public class LeonConstant
 	public static final String LOGIN_PASSCODE_12306_URL = "https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&" + Math.random();
 	// 12306 提交验证码
 	public static final String CHECK_RANDOM_CODE_URL = "https://kyfw.12306.cn/otn/passcodeNew/checkRandCodeAnsyn";
+	// 12306 登录验证
+	public static final String LOGIN_12306_URL = "https://kyfw.12306.cn/otn/login/loginAysnSuggest";
 }

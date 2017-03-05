@@ -124,7 +124,14 @@ public class Try12306
 		response = client.execute(post);
 		String res = EntityUtils.toString(response.getEntity());
 		JSONObject json = JSONObject.parseObject(res);
-		System.out.println(json.toJSONString());
+		JSONObject jsonData = json.getJSONObject("data");
+		if (!"1".equals(jsonData.getString("result")))
+		{
+			System.out.println(json);
+			return;
+		}
+		System.out.println("验证码通过，开始传用户名&&密码");
+		// 开始登录了
 	}
 
 	/**
