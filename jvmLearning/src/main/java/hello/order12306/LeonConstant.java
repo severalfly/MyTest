@@ -5,5 +5,7 @@ public class LeonConstant
 	// 12306 登录初始化地址
 	public static final String INIT_12306_URL = "https://kyfw.12306.cn/otn/login/init";
 	// 12306 获取验证码
-	public static final String LOGIN_12306_URL = "https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&" + Math.random();
+	public static final String LOGIN_PASSCODE_12306_URL = "https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand&" + Math.random();
+	// 12306 提交验证码
+	public static final String CHECK_RANDOM_CODE_URL = "https://kyfw.12306.cn/otn/passcodeNew/checkRandCodeAnsyn";
 }
