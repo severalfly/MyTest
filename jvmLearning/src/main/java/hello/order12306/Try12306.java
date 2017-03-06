@@ -13,9 +13,12 @@ import java.util.Random;
 
 import javax.net.ssl.SSLContext;
 
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.entity.StringEntity;
@@ -30,6 +33,9 @@ import hello.order12306.util.ObjectUtil;
 
 public class Try12306
 {
+	static CookieStore cookieStore = null;
+	static HttpClientContext context = null;
+
 	public static void main(String[] args) throws Exception
 	{
 
@@ -63,20 +69,49 @@ public class Try12306
 		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 		CloseableHttpClient client = HttpClients.custom().setSSLSocketFactory(sslsf).build();
 
+		HttpGet get = new HttpGet(LeonConstant.ONT_URL);
+		get.addHeader("Host", "kyfw.12306.cn");
+		get.addHeader("Connection", "keep-alive");
+		get.addHeader("Upgrade-Insecure-Requests", "1");
+		get.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
+		get.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+		get.addHeader("Referer", "https://kyfw.12306.cn/mormhweb/");
+		get.addHeader("Accept-Encoding", "gzip, deflate, sdch, br");
+		get.addHeader("Accept-Language", "zh-CN,zh;q=0.8");
+		get.addHeader("Cookie",
+				"JSESSIONID=0A02F04C98C20E3C34B1A35B821F2DCCAD6C6C1E71; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; BIGipServerotn=1290797578.38945.0000");
+		HttpResponse response = null;
+		response = client.execute(get);
+		Header[] headers = response.getAllHeaders();
+		headers = response.getHeaders("Set-Cookie");
+		String jession = ""; // JSESSIONID
+		String bigipServerotn = ""; //BIGipServerotn
+		for (Header header : headers)
+		{
+			if (header.getValue().startsWith("JSESSIONID"))
+			{
+				jession = header.getValue();
+			}
+			else if (header.getValue().startsWith("BIGipServerotn"))
+			{
+				bigipServerotn = header.getValue();
+			}
+			//			jession +=  header.getValue();
+		}
+		client = HttpClients.custom().setSSLSocketFactory(sslsf).build();
 
-		HttpGet get = new HttpGet(LeonConstant.INIT_12306_URL);
+		get = new HttpGet(LeonConstant.INIT_12306_URL);
 		get.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 		get.addHeader("Accept-Encoding", "gzip, deflate, sdch, br");
 		get.addHeader("Accept-Language", "zh-CN,zh;q=0.8");
 		get.addHeader("Connection", "keep-alive");
-		get.addHeader("Cookie",
-				"JSESSIONID=0A02F04C98C20E3C34B1A35B821F2DCCAD6C6C1E71; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; BIGipServerotn=1290797578.38945.0000");
+		get.addHeader("Cookie", jession + "; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; " + bigipServerotn);
 		get.addHeader("Host", "kyfw.12306.cn");
 		get.addHeader("Referer", "https://kyfw.12306.cn/otn/");
 		get.addHeader("Upgrade-Insecure-Requests", "1");
 		get.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
-		HttpResponse response = client.execute(get);
-		//		System.out.println(response);
+		response = client.execute(get);
+		//		System.out.println(EntityUtils.toString(response.getEntity()));
 
 		// 开始获取验证码
 		get = new HttpGet(LeonConstant.LOGIN_PASSCODE_12306_URL);
@@ -84,8 +119,7 @@ public class Try12306
 		get.addHeader("Accept-Encoding", "gzip, deflate, sdch, br");
 		get.addHeader("Accept-Language", "zh-CN,zh;q=0.8");
 		get.addHeader("Connection", "keep-alive");
-		get.addHeader("Cookie",
-				"JSESSIONID=0A02F04C98C20E3C34B1A35B821F2DCCAD6C6C1E71; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; BIGipServerotn=1290797578.38945.0000");
+		get.addHeader("Cookie", jession + "; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; " + bigipServerotn);
 		get.addHeader("Host", "kyfw.12306.cn");
 		get.addHeader("Referer", "https://kyfw.12306.cn/otn/login/init");
 		get.addHeader("Upgrade-Insecure-Requests", "1");
@@ -106,8 +140,7 @@ public class Try12306
 		post.addHeader("Accept-Encoding", "gzip, deflate, br");
 		post.addHeader("Accept-Language", "zh-CN,zh;q=0.8");
 		post.addHeader("Connection", "keep-alive");
-		post.addHeader("Cookie",
-				"JSESSIONID=0A02F04C98C20E3C34B1A35B821F2DCCAD6C6C1E71; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; BIGipServerotn=1290797578.38945.0000");
+		post.addHeader("Cookie", jession + "; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; " + bigipServerotn);
 		post.addHeader("Origin", "https://kyfw.12306.cn");
 		post.addHeader("Host", "kyfw.12306.cn");
 		post.addHeader("Referer", "https://kyfw.12306.cn/otn/login/init");
@@ -132,6 +165,24 @@ public class Try12306
 		}
 		System.out.println("验证码通过，开始传用户名&&密码");
 		// 开始登录了
+		post = new HttpPost(LeonConstant.LOGIN_12306_URL);
+		post.addHeader("Host", "kyfw.12306.cn");
+		post.addHeader("Connection", "keep-alive");
+		post.addHeader("Accept", "*/*");
+		post.addHeader("Origin", "https://kyfw.12306.cn");
+		post.addHeader("X-Requested-With", "XMLHttpRequest");
+		post.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+		post.addHeader("Referer", "https://kyfw.12306.cn/otn/login/init");
+		post.addHeader("Accept-Encoding", "gzip, deflate, br");
+		post.addHeader("Accept-Language", "zh-CN,zh;q=0.8");
+		post.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
+		post.addHeader("Cookie", jession + "; _jc_save_fromStation=%u6B66%u6C49%2CWHN; _jc_save_toStation=%u961C%u9633%2CFYH; _jc_save_fromDate=2017-01-22; _jc_save_toDate=2017-01-19; _jc_save_wfdc_flag=dc; _jc_save_detail=true; " + bigipServerotn);
+
+		stringEntity = new StringEntity(String.format("randCode=%s&loginUserDTO.user_name=yunfei_happyv2&userDTO.password=leon12306", codeStr));
+		response = client.execute(post);
+		res = EntityUtils.toString(response.getEntity());
+		System.out.println(res);
+
 	}
 
 	/**
@@ -194,4 +245,7 @@ public class Try12306
 		//把outStream里的数据写入内存  
 		return outStream.toByteArray();
 	}
+
+
+
 }
