@@ -1,16 +1,15 @@
-package org.ch2.doubleSynBlockOneTwo;
+package org.ch2.synBlockString;
 
 public class Run
 {
 	public static void main(String[] args)
 	{
-		ObjectService service = new ObjectService();
+		Service service = new Service();
 		AThread a = new AThread(service);
-		a.setName("a");
+		a.setName("A");
 		a.start();
-
 		BThread b = new BThread(service);
-		b.setName("b");
+		b.setName("B");
 		b.start();
 	}
 }
