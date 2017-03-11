@@ -14,4 +14,7 @@ public class Run
 		b.start();
 	}
 
+	// String 常量池会保持锁，
+	// 从Athread && BThread 代码可以看出，两个线程拥有相同锁，所以会造成B 不能执行
+
 }
