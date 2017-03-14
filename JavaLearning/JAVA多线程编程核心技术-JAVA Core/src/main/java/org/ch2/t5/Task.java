@@ -19,7 +19,6 @@ public class Task
 		}
 		catch (Exception e)
 		{
-			// TODO: handle exception
 		}
 	}
 }
