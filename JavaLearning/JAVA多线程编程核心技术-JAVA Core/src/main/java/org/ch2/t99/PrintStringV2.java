@@ -2,7 +2,7 @@ package org.ch2.t99;
 
 import org.junit.Test;
 
-public class PrintString
+public class PrintStringV2 implements Runnable
 {
 	private boolean isContinuePrint = true;
 
@@ -32,13 +32,20 @@ public class PrintString
 		}
 	}
 
+	public void run()
+	{
+		printStringMethod();
+
+	}
+
 	@Test
 	public void test()
 	{
-		// 这个时候是不能正确停止的，因为目前只有一个线程在运行
-		PrintString service = new PrintString();
-		service.printStringMethod();
+		// 现在能正确停止了，因为目前是两个线程，注意与PrintString的区别
+		PrintStringV2 service = new PrintStringV2();
+		new Thread(service).start();;
 		System.out.println("i want it stop, stopThread=" + Thread.currentThread().getName());
 		service.setContinuePrint(false);
 	}
+
 }
