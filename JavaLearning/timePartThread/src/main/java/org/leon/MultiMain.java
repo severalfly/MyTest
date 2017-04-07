@@ -2,6 +2,7 @@ package org.leon;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,9 +57,10 @@ public class MultiMain
 			{
 				long now = System.currentTimeMillis();
 				List<Node> list = business.get(location);
-				for (int i = 0; i < list.size(); i++)
+				Iterator it = list.iterator();
+				while (it.hasNext())
 				{
-					Node node = list.get(i);
+					Node node = (Node) it.next();
 					node.setHour(node.getHour() - 1);
 					if (node.getHour() < 0)
 					{
@@ -68,8 +70,7 @@ public class MultiMain
 					{
 						// 启动任务
 						node.getTask().start();
-						list.remove(i--);
-
+						it.remove();
 					}
 				}
 				location++;
