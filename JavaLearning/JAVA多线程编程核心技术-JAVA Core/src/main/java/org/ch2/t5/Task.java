@@ -10,8 +10,8 @@ public class Task
 		try
 		{
 			System.out.println("begin task");
-			Thread.sleep(3 * 1000l);
 			getData1 = "长时间处理任务后从远程返回的值1 threadName = " + Thread.currentThread().getName();
+			Thread.sleep(3 * 1000l);
 			getData2 = "长时间处理任务后从远程返回的值2 threadName = " + Thread.currentThread().getName();
 			System.out.println(getData1);
 			System.out.println(getData2);
