@@ -16,11 +16,12 @@ public class C
 		{
 			synchronized (lock)
 			{
-				if (ValueObject.value.equals(""))
+				while (ValueObject.value.equals(""))
 				{
+					System.out.println("consume " + Thread.currentThread().getName() + " waiting!");
 					lock.wait();
 				}
-				System.out.println("the value of get is: " + ValueObject.value);
+				System.out.println("consume " + Thread.currentThread().getName() + " runable");
 				ValueObject.value = "";
 				lock.notify();
 			}

@@ -16,10 +16,12 @@ public class P
 		{
 			synchronized (lock)
 			{
-				if (!ValueObject.value.equals(""))
+				while (!ValueObject.value.equals(""))
 				{
+					System.out.println("product " + Thread.currentThread().getName() + " waiting");
 					lock.wait();
 				}
+				System.out.println("product " + Thread.currentThread().getName() + " runnable");
 				String value = System.currentTimeMillis() + "_" + System.nanoTime();
 				System.out.println("the value of set is: " + value);
 				ValueObject.value = value;
