@@ -1,11 +1,11 @@
-package org.ch4;
+package org.leon.thread;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class Test
+public class TestGift
 {
 	private volatile Map<String, Integer> map;
 
@@ -13,6 +13,14 @@ public class Test
 	{
 		build();
 		return map;
+	}
+
+	public void clearMap()
+	{
+		if (map != null)
+		{
+			map.clear();
+		}
 	}
 
 	private void build()
@@ -26,20 +34,19 @@ public class Test
 					try
 					{
 						long sleep = 100;
-						Thread.sleep(sleep);
+						//						Thread.sleep(sleep);
 						map = new HashMap<String, Integer>();
-						Thread.sleep(sleep);
+						//						Thread.sleep(sleep);
 						map.put("a0", 0);
-						Thread.sleep(sleep);
+						//						Thread.sleep(sleep);
 						map.put("a1", 1);
-						Thread.sleep(sleep);
+						//						Thread.sleep(sleep);
 						map.put("a2", 2);
-						Thread.sleep(sleep);
+						//						Thread.sleep(sleep);
 						map.put("a3", 3);
 					}
-					catch (InterruptedException e)
+					catch (Exception e)
 					{
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -81,8 +88,12 @@ public class Test
 
 	public static void main(String[] args)
 	{
-		Test test = new Test();
-		test.test();
+		TestGift test = new TestGift();
+		for (int i = 0; i < 1; i++)
+		{
+			test.test();
+			//			test.clearMap();
+		}
 	}
 
 }
