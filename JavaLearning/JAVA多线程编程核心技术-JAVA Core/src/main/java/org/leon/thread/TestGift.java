@@ -8,19 +8,10 @@ import com.alibaba.fastjson.JSONObject;
 public class TestGift
 {
 	private volatile Map<String, Integer> map;
-
 	private Map<String, Integer> getMap()
 	{
 		build();
 		return map;
-	}
-
-	public void clearMap()
-	{
-		if (map != null)
-		{
-			map.clear();
-		}
 	}
 
 	private void build()
@@ -33,7 +24,7 @@ public class TestGift
 				{
 					try
 					{
-						long sleep = 100;
+						//						long sleep = 100;
 						//						Thread.sleep(sleep);
 						map = new HashMap<String, Integer>();
 						//						Thread.sleep(sleep);
@@ -89,11 +80,7 @@ public class TestGift
 	public static void main(String[] args)
 	{
 		TestGift test = new TestGift();
-		for (int i = 0; i < 1; i++)
-		{
-			test.test();
-			//			test.clearMap();
-		}
+		test.test();
 	}
 
 }
