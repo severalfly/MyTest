@@ -11,7 +11,7 @@ public class BaJinzhi
 	public static void main(String[] args)
 	{
 		String result = "";
-		int n = 7;
+		int n = 0;
 		while (n / 8 > 0)
 		{
 			result += n % 8;
