@@ -16,5 +16,4 @@ public class NoonState extends State
 			w.writeProgram();
 		}
 	}
-
 }
