@@ -16,7 +16,7 @@ public class WeatherService
 	{
 		CloseableHttpClient client = HttpClients.createDefault();
 		//		http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/from2.jsp?cz=%BA%BA%BF%DA&cc=T180&cxlx=1&rq=2017-05-17&czEn=-E6-B1-89-E5-8F-
-		HttpGet get = new HttpGet("http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/from2.jsp?cz=%BA%BA%BF%DA&cc=T180&cxlx=1&rq=2017-05-17&czEn=-E6-B1-89-E5-8F-");
+		HttpGet get = new HttpGet("http://api.avatardata.cn/Weather/Query?key=d0a5d233555942818f14f34698ec7899&cityname=武汉");
 		CloseableHttpResponse s = null;
 		try
 		{
@@ -46,8 +46,8 @@ public class WeatherService
 		{
 			try
 			{
-				System.out.println(s.getEntity().getContent());
-				return new String(EntityUtils.toString(s.getEntity()).getBytes("GBK"), "UTF-8");
+				//				System.out.println(s.getEntity().getContent());
+				return EntityUtils.toString(s.getEntity());
 			}
 			catch (ParseException e)
 			{
