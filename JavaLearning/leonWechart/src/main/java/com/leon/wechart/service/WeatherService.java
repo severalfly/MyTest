@@ -15,20 +15,10 @@ public class WeatherService
 	public static String getWeather(String city)
 	{
 		CloseableHttpClient client = HttpClients.createDefault();
-		//		http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/from2.jsp?cz=%BA%BA%BF%DA&cc=T180&cxlx=1&rq=2017-05-17&czEn=-E6-B1-89-E5-8F-
-		HttpGet get = new HttpGet("http://api.avatardata.cn/Weather/Query?key=d0a5d233555942818f14f34698ec7899&cityname=武汉");
+		HttpGet get = new HttpGet("http://api.avatardata.cn/Weather/Query?key=d0a5d233555942818f14f34698ec7899&cityname=" + city);
 		CloseableHttpResponse s = null;
 		try
 		{
-			//			get.setHeader("Connection:keep", "keep-alive");
-			//			get.setHeader("Content-Encoding", "gzip");
-			//			get.setHeader("Content-Type", "text/html; charset=gb2312");
-			//			get.setHeader("Accept", "*/*");
-			//			get.setHeader("Accept-Encoding", "gzip, deflate, sdch");
-			//			get.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
-			//			get.setHeader("Host", "dynamic.12306.cn");
-			//			get.setHeader("Referer", "http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/CCCX.jsp");
-			//			get.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36");
 			s = client.execute(get);
 		}
 		catch (ClientProtocolException e)

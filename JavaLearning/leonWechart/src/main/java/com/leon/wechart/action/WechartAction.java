@@ -3,6 +3,8 @@ package com.leon.wechart.action;
 import java.sql.Time;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.junit.Test;
 
@@ -13,6 +15,8 @@ import com.leon.wechart.util.EncryptUtil;
 
 public class WechartAction extends AbstractAction
 {
+	private static final long serialVersionUID = -9050109194783103434L;
+	private static Logger logger = Logger.getLogger(WechartAction.class);
 	private String city;
 	private String signature;
 	private String timestamp;
@@ -42,7 +46,7 @@ public class WechartAction extends AbstractAction
 	@Action(value = "/weather/queryWeather")
 	public void queryWeather()
 	{
-		// 
+		logger.info(ServletActionContext.getRequest().getParameterMap());
 		String str = WeatherService.getWeather(this.city);
 		JSONObject json = JSONObject.parseObject(str);
 		JSONObject result = json.getJSONObject("result");
@@ -56,6 +60,7 @@ public class WechartAction extends AbstractAction
 		res.append("天气：" + weather.getString("info") + "\n");
 		res.append("相对湿度：" + weather.getString("humidity") + "%\n");
 		res.append("温度：" + weather.getString("temperature") + "\n");
+		//		WeatherService.getWeather(city);
 		outputString(res.toString());
 	}
 
