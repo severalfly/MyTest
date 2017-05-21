@@ -12,6 +12,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.leon.wechart.AbstractAction;
 import com.leon.wechart.service.WeatherService;
 import com.leon.wechart.util.EncryptUtil;
+import com.leon.wechart.util.HttpServletRequestUtil;
+import com.leon.wechart.util.ObjectUtil;
 
 public class WechartAction extends AbstractAction
 {
@@ -26,19 +28,31 @@ public class WechartAction extends AbstractAction
 	@Action(value = "/wechart")
 	public void wechart()
 	{
-		System.out.println("leon" + new Time(System.currentTimeMillis()));
-		TreeSet<String> set = new TreeSet<>();
-		set.add("leon");
-		set.add(this.timestamp);
-		set.add(this.nonce);
-		String msg = "";
-		for (String str : set)
+		try
 		{
-			msg += str;
+			System.out.println("leon" + new Time(System.currentTimeMillis()));
+			TreeSet<String> set = new TreeSet<>();
+			set.add("leon");
+			set.add(this.timestamp);
+			set.add(this.nonce);
+			String msg = "";
+			for (String str : set)
+			{
+				msg += str;
+			}
+			if (this.signature.equalsIgnoreCase(EncryptUtil.encodeSHA(msg)))
+			{
+				String result = this.echostr;
+				String param = HttpServletRequestUtil.getParamFromRequestStream();
+				if (ObjectUtil.isNotNull(param))
+				{
+				}
+				outputString(result);
+			}
 		}
-		if (this.signature.equalsIgnoreCase(EncryptUtil.encodeSHA(msg)))
+		catch (Exception e)
 		{
-			outputString(this.echostr);
+			logger.error(e);
 		}
 		outputString("");
 	}
