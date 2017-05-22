@@ -16,6 +16,7 @@ import org.xml.sax.InputSource;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.leon.wechart.bean.TextMsgFromWC;
 import com.leon.wechart.util.LeonHttpClient;
 import com.leon.wechart.util.ObjectUtil;
 import com.leon.wechart.util.Pair;
@@ -225,6 +226,18 @@ public class WeChartService
 			logger.error("", e);
 		}
 		return retMap;
+	}
+
+	public static TextMsgFromWC parseTextMsg(Map<String, Object> s)
+	{
+		TextMsgFromWC tmf = new TextMsgFromWC();
+		tmf.setFromUserName(ObjectUtil.getString(s.get("FromUserName")));
+		tmf.setToUserName(ObjectUtil.getString(s.get("ToUserName")));
+		tmf.setCreateTime(ObjectUtil.getLong(s.get("CreateTime")));
+		tmf.setMsgType("text");
+		tmf.setContent(ObjectUtil.getString(s.get("Content")));
+		tmf.setMsgId(ObjectUtil.getLong(s.get("MsgId")));
+		return tmf;
 	}
 
 }

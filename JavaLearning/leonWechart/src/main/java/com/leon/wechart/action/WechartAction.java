@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.leon.wechart.AbstractAction;
+import com.leon.wechart.bean.TextMsgFromWC;
 import com.leon.wechart.service.WeChartService;
 import com.leon.wechart.service.WeatherService;
 import com.leon.wechart.util.EncryptUtil;
@@ -50,6 +51,14 @@ public class WechartAction extends AbstractAction
 				if (ObjectUtil.isNotNull(param))
 				{
 					Map<String, Object> s = WeChartService.parseXmlToList2(param);
+					if ("text".equalsIgnoreCase(ObjectUtil.getString(s.get("MsgType"))))
+					{
+						TextMsgFromWC tmf = WeChartService.parseTextMsg(s);
+						if (tmf.getContent().contains("大V"))
+						{
+
+						}
+					}
 				}
 				outputString(result);
 			}

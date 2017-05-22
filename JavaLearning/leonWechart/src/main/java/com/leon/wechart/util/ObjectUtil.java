@@ -15,4 +15,22 @@ public class ObjectUtil
 	{
 		return !isNull(obj);
 	}
+
+	public static String getString(Object obj)
+	{
+		if (obj == null)
+		{
+			return null;
+		}
+		return obj.toString();
+	}
+
+	public static long getLong(Object obj)
+	{
+		if (obj == null)
+		{
+			return 0;
+		}
+		return Long.parseLong(getString(obj));
+	}
 }
