@@ -1,6 +1,7 @@
 package com.leon.wechart.action;
 
 import java.sql.Time;
+import java.util.Map;
 import java.util.TreeSet;
 
 import org.apache.log4j.Logger;
@@ -10,9 +11,11 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.leon.wechart.AbstractAction;
+import com.leon.wechart.service.WeChartService;
 import com.leon.wechart.service.WeatherService;
 import com.leon.wechart.util.EncryptUtil;
 import com.leon.wechart.util.HttpServletRequestUtil;
+import com.leon.wechart.util.LeonHttpClient;
 import com.leon.wechart.util.ObjectUtil;
 
 public class WechartAction extends AbstractAction
@@ -46,6 +49,7 @@ public class WechartAction extends AbstractAction
 				String param = HttpServletRequestUtil.getParamFromRequestStream();
 				if (ObjectUtil.isNotNull(param))
 				{
+					Map<String, Object> s = WeChartService.parseXmlToList2(param);
 				}
 				outputString(result);
 			}
@@ -74,15 +78,16 @@ public class WechartAction extends AbstractAction
 		res.append("天气：" + weather.getString("info") + "\n");
 		res.append("相对湿度：" + weather.getString("humidity") + "%\n");
 		res.append("温度：" + weather.getString("temperature") + "\n");
+		//		res.append("温度：" + weather.getString("temperature") + "\n");
 		//		WeatherService.getWeather(city);
 		outputString(res.toString());
 	}
 
 	@Test
-	public void testqueryWeather()
+	public void testqueryWeather() throws Exception
 	{
 		String url = "http://127.0.0.1:8080/leonWechart/weather/queryWeather.action?city=武汉";
-
+		System.out.println(LeonHttpClient.sendRequestUrl(url, null));
 	}
 
 	public String getCity()
