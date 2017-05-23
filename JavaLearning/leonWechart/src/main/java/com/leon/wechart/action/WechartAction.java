@@ -106,7 +106,8 @@ public class WechartAction extends AbstractAction
 	public void testqueryWeather() throws Exception
 	{
 		//		String url = "http://127.0.0.1:8080/leonWechart/weather/queryWeather.action?city=武汉";
-		String url = "http://101.236.23.190:80/leonWechart/wechart.action?city=武汉";
+		//		String url = "http://101.236.23.190:80/leonWechart/wechart.action?city=武汉";
+		String url = "http://221.234.141.165:8080/leonWechart/wechart.action?city=武汉";
 		System.out.println(LeonHttpClient.sendRequestUrl(url, null));
 	}
 
