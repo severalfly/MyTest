@@ -4,14 +4,15 @@ import java.sql.Time;
 import java.util.Map;
 import java.util.TreeSet;
 
-import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 import com.leon.wechart.AbstractAction;
-import com.leon.wechart.bean.TextMsgFromWC;
+import com.leon.wechart.bean.send.WxSendTextMsg;
 import com.leon.wechart.service.WeChartService;
 import com.leon.wechart.service.WeatherService;
 import com.leon.wechart.util.EncryptUtil;
@@ -22,7 +23,7 @@ import com.leon.wechart.util.ObjectUtil;
 public class WechartAction extends AbstractAction
 {
 	private static final long serialVersionUID = -9050109194783103434L;
-	private static Logger logger = Logger.getLogger(WechartAction.class);
+	private static Logger logger = LoggerFactory.getLogger(WechartAction.class);
 	private String city;
 	private String signature;
 	private String timestamp;
@@ -32,6 +33,7 @@ public class WechartAction extends AbstractAction
 	@Action(value = "/wechart")
 	public void wechart()
 	{
+		logger.info(ServletActionContext.getRequest().getParameterMap().toString());
 		try
 		{
 			System.out.println("leon" + new Time(System.currentTimeMillis()));
@@ -53,11 +55,15 @@ public class WechartAction extends AbstractAction
 					Map<String, Object> s = WeChartService.parseXmlToList2(param);
 					if ("text".equalsIgnoreCase(ObjectUtil.getString(s.get("MsgType"))))
 					{
-						TextMsgFromWC tmf = WeChartService.parseTextMsg(s);
-						if (tmf.getContent().contains("大V"))
-						{
-
-						}
+						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
+						wxMsg.setContent("您好");
+						result = WeChartService.getResult(wxMsg);
+					}
+					else if ("subsi".equals(ObjectUtil.getString(s.get("MsgType"))))
+					{
+						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
+						wxMsg.setContent("您好，欢迎关注");
+						result = WeChartService.getResult(wxMsg);
 					}
 				}
 				outputString(result);
@@ -65,29 +71,33 @@ public class WechartAction extends AbstractAction
 		}
 		catch (Exception e)
 		{
-			logger.error(e);
+			logger.error("", e);
 		}
-		outputString("");
+		outputString("success");
 	}
 
 	@Action(value = "/weather/queryWeather")
 	public void queryWeather()
 	{
-		logger.info(ServletActionContext.getRequest().getParameterMap());
+		logger.info(city, ServletActionContext.getRequest().getParameterMap());
 		String str = WeatherService.getWeather(this.city);
 		JSONObject json = JSONObject.parseObject(str);
-		JSONObject result = json.getJSONObject("result");
-		JSONObject realtime = result.getJSONObject("realtime");// 实时来天气
-		JSONObject weather = realtime.getJSONObject("weather");
 		//		 "humidity": "79",
 		//         "img": "1",
 		//         "info": "多云",
 		//         "temperature": "23"
-		StringBuffer res = new StringBuffer();
-		res.append("天气：" + weather.getString("info") + "\n");
-		res.append("相对湿度：" + weather.getString("humidity") + "%\n");
-		res.append("温度：" + weather.getString("temperature") + "\n");
-		//		res.append("温度：" + weather.getString("temperature") + "\n");
+		StringBuffer res = new StringBuffer("first");
+		if (json != null)
+		{
+			JSONObject result = json.getJSONObject("result");
+			JSONObject realtime = result.getJSONObject("realtime");// 实时来天气
+			JSONObject weather = realtime.getJSONObject("weather");
+			res = new StringBuffer();
+			res.append("天气：" + weather.getString("info") + "\n");
+			res.append("相对湿度：" + weather.getString("humidity") + "%\n");
+			res.append("温度：" + weather.getString("temperature") + "\n");
+			res.append("温度：" + weather.getString("temperature") + "\n");
+		}
 		//		WeatherService.getWeather(city);
 		outputString(res.toString());
 	}
@@ -95,7 +105,8 @@ public class WechartAction extends AbstractAction
 	@Test
 	public void testqueryWeather() throws Exception
 	{
-		String url = "http://127.0.0.1:8080/leonWechart/weather/queryWeather.action?city=武汉";
+		//		String url = "http://127.0.0.1:8080/leonWechart/weather/queryWeather.action?city=武汉";
+		String url = "http://101.236.23.190:80/leonWechart/wechart.action?city=武汉";
 		System.out.println(LeonHttpClient.sendRequestUrl(url, null));
 	}
 

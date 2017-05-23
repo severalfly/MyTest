@@ -2,6 +2,7 @@ package com.leon.wechart.service;
 
 
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.XMLOutputter;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import org.xml.sax.InputSource;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.leon.wechart.bean.TextMsgFromWC;
+import com.leon.wechart.bean.send.WxMsg;
 import com.leon.wechart.util.LeonHttpClient;
 import com.leon.wechart.util.ObjectUtil;
 import com.leon.wechart.util.Pair;
@@ -240,4 +243,28 @@ public class WeChartService
 		return tmf;
 	}
 
+	public static String getResult(WxMsg wxMsg)
+	{
+		Document doc = wxMsg.toDocument();
+		String result = "";
+		try
+		{
+			if (null != doc)
+			{
+				StringWriter writer = new StringWriter();
+				new XMLOutputter().output(doc, writer);
+				result = writer.toString().replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "").replaceAll("\n", "").replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+				writer.close();
+			}
+			else
+			{
+				logger.error("发送消息时,解析出dom为空 msg :");
+			}
+		}
+		catch (Exception e)
+		{
+			logger.error("转换为微信返回消息时出错：" + JSONObject.toJSONString(wxMsg), e);
+		}
+		return result;
+	}
 }
