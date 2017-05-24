@@ -1,6 +1,5 @@
 package com.leon.wechart.action;
 
-import java.sql.Time;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -36,7 +35,6 @@ public class WechartAction extends AbstractAction
 		logger.info(ServletActionContext.getRequest().getParameterMap().toString());
 		try
 		{
-			System.out.println("leon" + new Time(System.currentTimeMillis()));
 			TreeSet<String> set = new TreeSet<>();
 			set.add("leon");
 			set.add(this.timestamp);
@@ -46,9 +44,10 @@ public class WechartAction extends AbstractAction
 			{
 				msg += str;
 			}
-			if (this.signature.equalsIgnoreCase(EncryptUtil.encodeSHA(msg)))
+			String result = "success";
+			if (this.signature.equalsIgnoreCase(EncryptUtil.sha1(msg)))
 			{
-				String result = this.echostr;
+				result = this.echostr;
 				String param = HttpServletRequestUtil.getParamFromRequestStream();
 				if (ObjectUtil.isNotNull(param))
 				{
@@ -56,7 +55,30 @@ public class WechartAction extends AbstractAction
 					if ("text".equalsIgnoreCase(ObjectUtil.getString(s.get("MsgType"))))
 					{
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
-						wxMsg.setContent("您好");
+						String content = "";
+						if ("天气".equals(ObjectUtil.getString(s.get("Content"))))
+						{
+							String str = WeatherService.getWeather(this.city);
+							JSONObject json = JSONObject.parseObject(str);
+							//		 "humidity": "79",
+							//         "img": "1",
+							//         "info": "多云",
+							//         "temperature": "23"
+							StringBuffer res = new StringBuffer("first");
+							if (json != null)
+							{
+								JSONObject resultJson = json.getJSONObject("result");
+								JSONObject realtime = resultJson.getJSONObject("realtime");// 实时来天气
+								JSONObject weather = realtime.getJSONObject("weather");
+								res = new StringBuffer();
+								res.append("天气：" + weather.getString("info") + "\n");
+								res.append("相对湿度：" + weather.getString("humidity") + "%\n");
+								res.append("温度：" + weather.getString("temperature") + "\n");
+								res.append("温度：" + weather.getString("temperature") + "\n");
+								content = res.toString();
+							}
+						}
+						wxMsg.setContent(ObjectUtil.isNull(content) ? "您好" : content);
 						result = WeChartService.getResult(wxMsg);
 					}
 					else if ("subsi".equals(ObjectUtil.getString(s.get("MsgType"))))
@@ -66,14 +88,15 @@ public class WechartAction extends AbstractAction
 						result = WeChartService.getResult(wxMsg);
 					}
 				}
-				outputString(result);
+				//				outputString(result);
 			}
+			logger.info("返回微信数据" + result);
+			outputString(result);
 		}
 		catch (Exception e)
 		{
 			logger.error("", e);
 		}
-		outputString("success");
 	}
 
 	@Action(value = "/weather/queryWeather")
@@ -107,7 +130,7 @@ public class WechartAction extends AbstractAction
 	{
 		//		String url = "http://127.0.0.1:8080/leonWechart/weather/queryWeather.action?city=武汉";
 		//		String url = "http://101.236.23.190:80/leonWechart/wechart.action?city=武汉";
-		String url = "http://221.234.141.165:8080/leonWechart/wechart.action?city=武汉";
+		String url = "http://severalfly.6655.la/leonWechart/wechart.action?city=武汉";
 		System.out.println(LeonHttpClient.sendRequestUrl(url, null));
 	}
 
