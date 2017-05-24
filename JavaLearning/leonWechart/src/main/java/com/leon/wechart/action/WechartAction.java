@@ -56,14 +56,11 @@ public class WechartAction extends AbstractAction
 					{
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
 						String content = "";
-						if ("天气".equals(ObjectUtil.getString(s.get("Content"))))
+						String wxCon = ObjectUtil.getString(s.get("Content"));
+						if (wxCon.endsWith("天气"))
 						{
-							String str = WeatherService.getWeather(this.city);
+							String str = WeatherService.getWeather(wxCon.substring(0, wxCon.indexOf("天气")));
 							JSONObject json = JSONObject.parseObject(str);
-							//		 "humidity": "79",
-							//         "img": "1",
-							//         "info": "多云",
-							//         "temperature": "23"
 							StringBuffer res = new StringBuffer("first");
 							if (json != null)
 							{
@@ -74,9 +71,13 @@ public class WechartAction extends AbstractAction
 								res.append("天气：" + weather.getString("info") + "\n");
 								res.append("相对湿度：" + weather.getString("humidity") + "%\n");
 								res.append("温度：" + weather.getString("temperature") + "\n");
-								res.append("温度：" + weather.getString("temperature") + "\n");
+								//								res.append("温度：" + weather.getString("temperature") + "\n");
 								content = res.toString();
 							}
+						}
+						else if (wxCon.equals("笑话"))
+						{
+							content = WeatherService.getLaugh(5);
 						}
 						wxMsg.setContent(ObjectUtil.isNull(content) ? "您好" : content);
 						result = WeChartService.getResult(wxMsg);
@@ -136,7 +137,7 @@ public class WechartAction extends AbstractAction
 
 	public String getCity()
 	{
-		return city;
+		return this.city;
 	}
 
 	public void setCity(String city)
@@ -146,7 +147,7 @@ public class WechartAction extends AbstractAction
 
 	public String getSignature()
 	{
-		return signature;
+		return this.signature;
 	}
 
 	public void setSignature(String signature)

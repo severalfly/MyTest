@@ -253,7 +253,7 @@ public class WeChartService
 			{
 				StringWriter writer = new StringWriter();
 				new XMLOutputter().output(doc, writer);
-				result = writer.toString().replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "").replaceAll("\n", "").replaceAll("&lt;", "<").replaceAll("&gt;", ">");
+				result = writer.toString().replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "").replaceAll("&lt;", "<").replaceAll("&gt;", ">");
 				writer.close();
 			}
 			else
