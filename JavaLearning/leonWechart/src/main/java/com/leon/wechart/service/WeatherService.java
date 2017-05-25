@@ -1,5 +1,7 @@
 package com.leon.wechart.service;
 
+import java.util.Random;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +47,7 @@ public class WeatherService
 		{
 			StringBuffer sb = new StringBuffer();
 			int cnt = 1;
-			String url = "http://api.avatardata.cn/Joke/QueryJokeByTime?key=892edfd091814b599ce931b53712811f&page=1&rows=" + count + "&sort=desc&time=" + System.currentTimeMillis() / 1000;
+			String url = "http://api.avatardata.cn/Joke/QueryJokeByTime?key=892edfd091814b599ce931b53712811f&page=" + new Random().nextInt(100) + "&rows=" + count + "&sort=desc&time=" + System.currentTimeMillis() / 1000;
 			String reqRes = LeonHttpClient.sendRequestUrl(url, null);
 			logger.info(reqRes);
 			JSONObject json = JSONObject.parseObject(reqRes);
@@ -58,7 +60,7 @@ public class WeatherService
 					sb.append((cnt++) + ". ");
 					sb.append(JSONObject.parseObject(object.toString()).get("content") + "\n");
 				}
-				return sb.toString();
+				return (sb.toString() + "\n").replace("\n\n", "");
 			}
 		}
 		catch (Exception e)

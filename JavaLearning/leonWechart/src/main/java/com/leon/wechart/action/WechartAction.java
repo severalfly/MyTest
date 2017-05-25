@@ -16,6 +16,7 @@ import com.leon.wechart.service.WeChartService;
 import com.leon.wechart.service.WeatherService;
 import com.leon.wechart.util.EncryptUtil;
 import com.leon.wechart.util.HttpServletRequestUtil;
+import com.leon.wechart.util.HttpUtil;
 import com.leon.wechart.util.LeonHttpClient;
 import com.leon.wechart.util.ObjectUtil;
 
@@ -32,7 +33,7 @@ public class WechartAction extends AbstractAction
 	@Action(value = "/wechart")
 	public void wechart()
 	{
-		logger.info(ServletActionContext.getRequest().getParameterMap().toString());
+		logger.info(HttpUtil.getParam(ServletActionContext.getRequest().getParameterMap()));
 		try
 		{
 			TreeSet<String> set = new TreeSet<>();
@@ -70,7 +71,7 @@ public class WechartAction extends AbstractAction
 								res = new StringBuffer();
 								res.append("天气：" + weather.getString("info") + "\n");
 								res.append("相对湿度：" + weather.getString("humidity") + "%\n");
-								res.append("温度：" + weather.getString("temperature") + "\n");
+								res.append("温度：" + weather.getString("temperature"));
 								//								res.append("温度：" + weather.getString("temperature") + "\n");
 								content = res.toString();
 							}
@@ -82,7 +83,7 @@ public class WechartAction extends AbstractAction
 						wxMsg.setContent(ObjectUtil.isNull(content) ? "您好" : content);
 						result = WeChartService.getResult(wxMsg);
 					}
-					else if ("subsi".equals(ObjectUtil.getString(s.get("MsgType"))))
+					else if ("subscribe".equals(ObjectUtil.getString(s.get("MsgType"))))
 					{
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
 						wxMsg.setContent("您好，欢迎关注");
@@ -103,7 +104,7 @@ public class WechartAction extends AbstractAction
 	@Action(value = "/weather/queryWeather")
 	public void queryWeather()
 	{
-		logger.info(city, ServletActionContext.getRequest().getParameterMap());
+		logger.info(HttpUtil.getParam(ServletActionContext.getRequest().getParameterMap()));
 		String str = WeatherService.getWeather(this.city);
 		JSONObject json = JSONObject.parseObject(str);
 		//		 "humidity": "79",
