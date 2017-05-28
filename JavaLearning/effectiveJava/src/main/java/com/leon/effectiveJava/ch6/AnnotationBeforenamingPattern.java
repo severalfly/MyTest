@@ -9,4 +9,12 @@ public class AnnotationBeforenamingPattern
 		Date date = new Date();
 		System.out.println(date.getTime());
 	}
+
+	/**
+	 * {@code <p>ahodfi</p>}
+	 */
+	public void testDoc()
+	{
+		System.out.println(new Date());
+	}
 }
