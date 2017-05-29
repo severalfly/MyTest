@@ -2,4 +2,5 @@
 <config>
 	<chartType>pie</chartType>
 	<shapeType>circle</shapeType>
+	<factoryMethod>com.leon.artofpattern.factorymethod.DatabaseLoggerFactory</factoryMethod>
 </config>
