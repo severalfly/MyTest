@@ -1,6 +1,6 @@
 package com.leon.artofpattern.simplefactory.exercise;
 
-public class CircleShape implements Shape
+public class CircleShape extends Shape
 {
 
 	@Override

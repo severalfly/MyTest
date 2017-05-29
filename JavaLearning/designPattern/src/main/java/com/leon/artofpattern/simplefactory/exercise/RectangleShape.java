@@ -1,6 +1,6 @@
 package com.leon.artofpattern.simplefactory.exercise;
 
-public class RectangleShape implements Shape
+public class RectangleShape extends Shape
 {
 
 	@Override

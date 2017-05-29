@@ -1,6 +1,6 @@
 package com.leon.artofpattern.simplefactory.exercise;
 
-public class TriangleShape implements Shape
+public class TriangleShape extends Shape
 {
 
 	@Override
