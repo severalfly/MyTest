@@ -22,5 +22,12 @@ public class SingletonClient
 		{
 			System.out.printf("分发至服务器：%s%n", balancer1.getServer());
 		}
+
+		System.out.println("start to test V2");
+
+		SingletonV2 s1, s2;
+		s1 = SingletonV2.getInstance();
+		s2 = SingletonV2.getInstance();
+		System.out.println(s1 == s2);
 	}
 }
