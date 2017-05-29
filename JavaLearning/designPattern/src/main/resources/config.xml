@@ -3,4 +3,5 @@
 	<chartType>pie</chartType>
 	<shapeType>circle</shapeType>
 	<factoryMethod>com.leon.artofpattern.factorymethod.DatabaseLoggerFactory</factoryMethod>
+	<factoryMethodExercise>com.leon.artofpattern.factorymethod.exercise.JPGPicReader</factoryMethodExercise>
 </config>
