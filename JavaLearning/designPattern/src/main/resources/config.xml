@@ -4,4 +4,5 @@
 	<shapeType>circle</shapeType>
 	<factoryMethod>com.leon.artofpattern.factorymethod.DatabaseLoggerFactory</factoryMethod>
 	<factoryMethodExercise>com.leon.artofpattern.factorymethod.exercise.JPGPicReader</factoryMethodExercise>
+	<abstractFactoryMethod>com.leon.artofpattern.abstractfactory.SummerSkinFactory</abstractFactoryMethod>
 </config>

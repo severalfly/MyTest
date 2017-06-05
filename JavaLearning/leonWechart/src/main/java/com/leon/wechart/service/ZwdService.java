@@ -41,6 +41,10 @@ public class ZwdService
 			String res = LeonHttpClient.sendRequestUrl(url, headers);
 			System.out.println(res);
 			logger.info(res);
+			if (res.contains("ERROR_ADDRESS_DATE"))
+			{
+				return "暂无正晚点信息，请稍候查询";
+			}
 		}
 		catch (Exception e)
 		{
@@ -53,6 +57,6 @@ public class ZwdService
 	@Test
 	public void testQuery()
 	{
-		query("汉口", "T180", "2017-05-25");
+		System.out.println(query("上海虹桥", "G155", "2017-05-25"));
 	}
 }
