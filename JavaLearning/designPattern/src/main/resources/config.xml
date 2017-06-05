@@ -6,4 +6,5 @@
 	<factoryMethodExercise>com.leon.artofpattern.factorymethod.exercise.JPGPicReader</factoryMethodExercise>
 	<abstractFactoryMethod>com.leon.artofpattern.abstractfactory.SummerSkinFactory</abstractFactoryMethod>
 	<abstractFactoryMethodExercise>com.leon.artofpattern.abstractfactory.exercise.IosFactory</abstractFactoryMethodExercise>
+	<builderPattern>com.leon.artofpattern.builder.DevilBuilder</builderPattern>
 </config>
