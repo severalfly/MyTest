@@ -7,4 +7,5 @@
 	<abstractFactoryMethod>com.leon.artofpattern.abstractfactory.SummerSkinFactory</abstractFactoryMethod>
 	<abstractFactoryMethodExercise>com.leon.artofpattern.abstractfactory.exercise.IosFactory</abstractFactoryMethodExercise>
 	<builderPattern>com.leon.artofpattern.builder.DevilBuilder</builderPattern>
+	<builderExercisePattern>com.leon.artofpattern.builder.exercise.MemoryModle</builderExercisePattern>
 </config>
