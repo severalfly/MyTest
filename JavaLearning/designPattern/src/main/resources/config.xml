@@ -9,4 +9,7 @@
 	<builderPattern>com.leon.artofpattern.builder.DevilBuilder</builderPattern>
 	<builderExercisePattern>com.leon.artofpattern.builder.exercise.MemoryModle</builderExercisePattern>
 	<adapterName>com.leon.artofpattern.adapter.OperationAdapter</adapterName>
+
+	<bridgeImage>com.leon.artofpattern.bridge.JPGImage</bridgeImage>
+	<bridgeImp>com.leon.artofpattern.bridge.LinuxImp</bridgeImp>
 </config>
