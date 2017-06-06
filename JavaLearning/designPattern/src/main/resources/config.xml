@@ -8,4 +8,5 @@
 	<abstractFactoryMethodExercise>com.leon.artofpattern.abstractfactory.exercise.IosFactory</abstractFactoryMethodExercise>
 	<builderPattern>com.leon.artofpattern.builder.DevilBuilder</builderPattern>
 	<builderExercisePattern>com.leon.artofpattern.builder.exercise.MemoryModle</builderExercisePattern>
+	<adapterName>com.leon.artofpattern.adapter.OperationAdapter</adapterName>
 </config>
