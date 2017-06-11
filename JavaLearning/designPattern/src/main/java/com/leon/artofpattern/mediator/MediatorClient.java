@@ -23,6 +23,7 @@ public class MediatorClient
 
 		addBt.changed();
 		System.out.println("--------------------------");
+		System.out.println("--------------------------");
 		list.changed();
 	}
 }
