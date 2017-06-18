@@ -14,9 +14,8 @@ public class Player implements Observer
 	@Override
 	public void update(Observable o, Object arg)
 	{
-		System.out.println("player update");
+		System.out.println("player update " + ((ContreteObserable) o).getData());
 		// 有更新操作时，通知其他观察者。 
-		o.notifyObservers();
 	}
 
 }

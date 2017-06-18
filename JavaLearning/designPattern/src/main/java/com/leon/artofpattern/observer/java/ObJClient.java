@@ -1,16 +1,16 @@
 package com.leon.artofpattern.observer.java;
 
-import java.util.Observable;
 import java.util.Observer;
 
 public class ObJClient
 {
 	public static void main(String[] args)
 	{
-		Observable obserable = new ContreteObserable();
+		ContreteObserable obserable = new ContreteObserable();
 		Observer player = new Player();
 		obserable.addObserver(player);
-
-		player.update(obserable, new Object());
+		Observer player2 = new Player();
+		obserable.addObserver(player2);
+		obserable.setData("12");// 通知所有观察者，数据有变化了
 	}
 }
