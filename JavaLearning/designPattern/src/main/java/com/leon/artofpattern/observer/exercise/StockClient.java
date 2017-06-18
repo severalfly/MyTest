@@ -1,7 +1,5 @@
 package com.leon.artofpattern.observer.exercise;
 
-import java.util.Observable;
-
 public class StockClient
 {
 	public static void main(String[] args)
@@ -9,12 +7,14 @@ public class StockClient
 		StockMan m = new StockMan("first");
 		StockMan m2 = new StockMan("second");
 
-		Observable soft = new StockSoft();
+		StockSoft soft = new StockSoft();
 
 		soft.addObserver(m);
 		soft.addObserver(m2);
 
-		//		man.notifyObservers("5%");
-		m.update(soft, null);
+		soft.setStockIndex(2);
+
+		soft.setStockIndex(4);
+		soft.setStockIndex(4);
 	}
 }
