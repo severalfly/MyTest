@@ -14,4 +14,6 @@
 	<bridgeImp>com.leon.artofpattern.bridge.LinuxImp</bridgeImp>
 	
 	<commandExer>com.leon.artofpattern.command.exercise.CreateCommand</commandExer>
+	
+	<strategy>com.leon.artofpattern.strategy.VIPDiscount</strategy>
 </config>
