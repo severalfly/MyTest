@@ -16,4 +16,5 @@
 	<commandExer>com.leon.artofpattern.command.exercise.CreateCommand</commandExer>
 	
 	<strategy>com.leon.artofpattern.strategy.VIPDiscount</strategy>
+	<strategyExecise>com.leon.artofpattern.strategy.execrise.HelicopterPlane</strategyExecise>
 </config>
