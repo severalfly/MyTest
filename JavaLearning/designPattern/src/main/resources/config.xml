@@ -19,4 +19,6 @@
 	<strategyExecise>com.leon.artofpattern.strategy.execrise.HelicopterPlane</strategyExecise>
 	<templateAccount>com.leon.artofpattern.template.SavingAccount</templateAccount>
 	<templateExecrise>com.leon.artofpattern.template.execrise.JDBCSql</templateExecrise>
+	
+	<visitorClient>com.leon.artofpattern.visitor.HRDepartment</visitorClient>
 </config>
