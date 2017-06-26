@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Folder extends AbstractFile
 {
-	private List<AbstractFile> fileList = new ArrayList<>();
+	private List<AbstractFile> fileList = new ArrayList<AbstractFile>();
 	private String name;
 
 	public Folder(String name)
