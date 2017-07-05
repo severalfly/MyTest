@@ -14,5 +14,6 @@
 		<br /> 姓名<input type='text' name="Name"> <br /> 年龄<input
 			type='text' name=Age> <input type="submit" value="提交">
 	</form>
+	${url }
 </body>
 </html>
