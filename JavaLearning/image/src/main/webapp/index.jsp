@@ -110,7 +110,7 @@
                     } else if (data == '4') {
                         createPopOver('#password', 'right', ' wrong password', 'show');
                     } else if (data == 5) {
-                        location.href = 'test.jsp';
+                        location.href = 'home.jsp';
                     }
                 });
             });
