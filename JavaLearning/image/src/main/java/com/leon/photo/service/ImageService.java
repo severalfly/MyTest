@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.leon.photo.domain.Image;
 import com.leon.photo.domain.User;
@@ -21,19 +20,28 @@ public class ImageService
 	public ArrayList<Image> getByUserId(int userId)
 	{
 		ArrayList<Image> images = new ArrayList<Image>();
-		String sql = "select id, name, url, date, user_id from image where user_id = ? order by date desc";
-		String[] parameters = { userId + "" };
-		List<Object[]> imageList = DBUtils.query(sql, parameters);
-		for (Object[] objects : imageList)
-		{
-			Image image = new Image();
-			image.setId(Integer.parseInt(objects[0].toString()));
-			image.setName(objects[1].toString());
-			image.setUrl(objects[2].toString());
-			image.setDate((Date) objects[3]);
-			image.setUser(new User(Integer.parseInt(objects[4].toString())));
-			images.add(image);
-		}
+		Image image = new Image();
+		image.setId(1);
+		image.setDate(new Date());
+		image.setName("image test");
+		image.setUrl("/image/pattern/20160104165258819.png");
+		User user = new User();
+		user.setId(1);
+		image.setUser(user);
+		images.add(image);
+		//		String sql = "select id, name, url, date, user_id from image where user_id = ? order by date desc";
+		//		String[] parameters = { userId + "" };
+		//		List<Object[]> imageList = DBUtils.query(sql, parameters);
+		//		for (Object[] objects : imageList)
+		//		{
+		//			Image image = new Image();
+		//			image.setId(Integer.parseInt(objects[0].toString()));
+		//			image.setName(objects[1].toString());
+		//			image.setUrl(objects[2].toString());
+		//			image.setDate((Date) objects[3]);
+		//			image.setUser(new User(Integer.parseInt(objects[4].toString())));
+		//			images.add(image);
+		//		}
 		return images;
 	}
 

@@ -1,7 +1,5 @@
 package com.leon.photo.service;
 
-import java.util.List;
-
 import com.leon.photo.domain.User;
 import com.leon.photo.util.DBUtils;
 
@@ -14,18 +12,23 @@ public class UserService
 	 */
 	public User getUserByUsername(String username)
 	{
-		String sql = "select id, username, password from user where username = ?";
-		String[] parameters = { username };
-		List<Object[]> users = DBUtils.query(sql, parameters);
-		if (users.size() == 0)
-		{
-			return null;
-		}
-		else
-		{
-			Object[] objects = users.get(0);
-			return objects == null ? null : new User(Integer.parseInt(objects[0].toString()), objects[1].toString(), objects[2].toString(), null);
-		}
+		//		String sql = "select id, username, password from user where username = ?";
+		//		String[] parameters = { username };
+		//		List<Object[]> users = DBUtils.query(sql, parameters);
+		//		if (users.size() == 0)
+		//		{
+		//			return null;
+		//		}
+		//		else
+		//		{
+		//			Object[] objects = users.get(0);
+		//			return objects == null ? null : new User(Integer.parseInt(objects[0].toString()), objects[1].toString(), objects[2].toString(), null);
+		//		}
+		User user = new User();
+		user.setId(1);
+		user.setUsername("u");
+		user.setPassword("p");
+		return user;
 	}
 
 	/**
