@@ -12,3 +12,4 @@ jvmLearning/target/*
 springLearning/spring-book-ch2/target/*
 **dependency-reduced-pom.xml
 *.png
+JavaLearning/image/src/main/resources/qiniu.properties

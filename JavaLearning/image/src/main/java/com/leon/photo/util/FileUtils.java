@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import org.json.JSONException;
 
+import com.leon.photo.LConfig;
 import com.qiniu.api.auth.AuthException;
 import com.qiniu.api.auth.digest.Mac;
 import com.qiniu.api.io.IoApi;
@@ -14,8 +15,8 @@ import com.qiniu.api.rs.RSClient;
 public class FileUtils
 {
 	// TODO
-	private static final String ACCESS_KEY = "";//这里填上面我们讲到的，密钥管理里面的密钥
-	private static final String SECRET_KEY = "";
+	private static final String ACCESS_KEY = LConfig.instance.getProperty("access_key");//这里填上面我们讲到的，密钥管理里面的密钥
+	private static final String SECRET_KEY = LConfig.instance.getProperty("secret_key");
 	private static final String BUCKET_NAME = "severalfly-image";//填我们在七牛云创建的 Bucket 名字
 	//	private static final String ACCESS_KEY = " your Access Key";//这里填上面我们讲到的，密钥管理里面的密钥
 	//	private static final String SECRET_KEY = "your Secret Key";

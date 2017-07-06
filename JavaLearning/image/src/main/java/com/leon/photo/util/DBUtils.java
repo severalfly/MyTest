@@ -34,7 +34,6 @@ public class DBUtils
 	{
 		try
 		{
-			// TODO
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false", "root", "passwd");//将数据库名字修改为自己的数据库，root 为账户名，本实验环境 mysql 密码为空
 		}
 		catch (SQLException e)
