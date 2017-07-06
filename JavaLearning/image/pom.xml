@@ -14,11 +14,10 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.qiniu/qiniu-java-sdk -->
 		<dependency>
 			<groupId>com.qiniu</groupId>
 			<artifactId>qiniu-java-sdk</artifactId>
-			<version>6.1.9</version>
+			<version>[7.2.0, 7.2.99]</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
@@ -55,7 +54,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.6</version>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 
