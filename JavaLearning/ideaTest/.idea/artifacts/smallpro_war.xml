@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="smallpro:war">
+    <output-path>$PROJECT_DIR$/../../../openLearn/smallpro/target</output-path>
+    <root id="archive" name="smallpro.war">
+      <element id="artifact" artifact-name="smallpro:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="smallpro:war exploded">
+    <output-path>$PROJECT_DIR$/../../../openLearn/smallpro/target/smallpro</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="smallpro" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../../../openLearn/smallpro/target/smallpro/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="smallpro/web/Web" />
+    </root>
+  </artifact>
+</component>
