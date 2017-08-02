@@ -25,8 +25,24 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
+	u1  = -min(X(:, 1)) + max(X(:, 1));
+	u2  = -min(X(:, 2)) + max(X(:, 2));
 
+	mu(1) = mean(X(:, 1));
+	mu(2) = mean(X(:, 2));
+	
+	mu
 
+	sigma(1) = std(X(:, 1));
+	sigma(2) = std(X(:, 2));
+
+	X_norm(:, 1) = (X(:, 1) - mu(1) ) / u1;
+	X_norm(:, 2) = (X(:, 2) - mu(2) ) / u2;
+
+	[X_norm(1:10,:) ]
+
+	% m = length(X_norm);
+	% X_norm = [ones(m, 1), X_norm];
 
 
 
