@@ -25,22 +25,31 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
-	u1  = -min(X(:, 1)) + max(X(:, 1));
-	u2  = -min(X(:, 2)) + max(X(:, 2));
+	% u1  = -min(X(:, 1)) + max(X(:, 1));
+	% u2  = -min(X(:, 2)) + max(X(:, 2));
 
-	mu(1) = mean(X(:, 1));
-	mu(2) = mean(X(:, 2));
+	for  i = 1:size(X, 2),
+		mu(i) = mean(X(:, i));
+		sigma(i) = std(X(:, i));
+		X_norm(:, i) = (X(:, i) - mu(i)) / std(X(:, i));
+	end
+		% mu(1) = mean(X(:, 1));
+	% mu(2) = mean(X(:, 2));
 	
-	mu
+	
 
-	sigma(1) = std(X(:, 1));
-	sigma(2) = std(X(:, 2));
+	% sigma(1) = std(X(:, 1));
+	% sigma(2) = std(X(:, 2));
 
-	X_norm(:, 1) = (X(:, 1) - mu(1) ) / u1;
-	X_norm(:, 2) = (X(:, 2) - mu(2) ) / u2;
+	% std(X(:, 1))
 
-	[X_norm(1:10,:) ]
+	% X_norm(:, 1) = (X(:, 1) - mu(1) ) / std(X(:, 1));
+	% X_norm(:, 2) = (X(:, 2) - mu(2) ) / std(X(:, 2));
 
+	% (X(:, 1) - mu(1))(1:10, :)
+	% [X(1:10, :)]
+	% [X_norm(1:10,:) ]
+	% X_norm
 	% m = length(X_norm);
 	% X_norm = [ones(m, 1), X_norm];
 
