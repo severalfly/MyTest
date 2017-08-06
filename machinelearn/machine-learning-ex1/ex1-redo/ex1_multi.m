@@ -90,10 +90,10 @@ theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
 % Plot the convergence graph
-figure;
-plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
-xlabel('Number of iterations');
-ylabel('Cost J');
+% figure;
+% plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
+% xlabel('Number of iterations');
+% ylabel('Cost J');
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');
@@ -106,14 +106,17 @@ fprintf('\n');
 % not need to be normalized.
 price = 0; % You should change this
 
-
+p_price = [1416, 2];
+x_input = (p_price - mu) ./ sigma;
+price = [1 x_input] * theta;
+% 2104,3,399900
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using gradient descent):\n $%f\n'], price);
 
 fprintf('Program paused. Press enter to continue.\n');
-pause;
+% pause;
 
 %% ================ Part 3: Normal Equations ================
 
@@ -150,8 +153,7 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
-
+price = [1 p_price] * theta;
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
