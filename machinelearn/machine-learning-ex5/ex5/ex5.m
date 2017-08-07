@@ -69,7 +69,7 @@ fprintf(['Gradient at theta = [1 ; 1]:  [%f; %f] '...
          grad(1), grad(2));
 
 fprintf('Program paused. Press enter to continue.\n');
-pause;
+% pause;
 
 
 %% =========== Part 4: Train Linear Regression =============
