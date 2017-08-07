@@ -13,7 +13,6 @@ figure; hold on;
 %
 
 pos = find(y == 1); neg = find(y == 0);
-pos
 plot(X(pos, 1), X(pos, 2), 'k+');
 plot(X(neg, 1), X(neg, 2), 'ko')
 

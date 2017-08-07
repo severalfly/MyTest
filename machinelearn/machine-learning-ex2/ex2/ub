@@ -1,0 +1,35 @@
+theta =
+
+   -0.72506
+  -65.63827
+  -66.21600
+
+Cost at initial theta (zeros): 0.000000
+Expected cost (approx): 0.693
+Gradient at initial theta (zeros): 
+ 0.000000 
+ 0.000000 
+ 0.000000 
+Expected gradients (approx):
+ -0.1000
+ -12.0092
+ -11.2628
+theta =
+
+  -24.725
+  -65.438
+  -66.016
+
+
+Cost at test theta: 0.000000
+Expected cost (approx): 0.218
+Gradient at test theta: 
+ 0.000000 
+ 0.000000 
+ 0.000000 
+Expected gradients (approx):
+ 0.043
+ 2.566
+ 2.647
+
+Program paused. Press enter to continue.
