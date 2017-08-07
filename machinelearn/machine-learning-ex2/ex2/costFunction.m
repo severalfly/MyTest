@@ -20,10 +20,13 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+    % temp0 = theta(1) - alpha * sum(X(:,1)' * ( X  * theta- y)) / m;
+    % temp1 = theta(2) - alpha * sum(X(:,2)' * ( X  * theta- y)) / m;
+    % theta = [temp0; temp1];
 
 
 
-
+	J_history(iter) = computeCost(X, y, theta);
 
 
 
