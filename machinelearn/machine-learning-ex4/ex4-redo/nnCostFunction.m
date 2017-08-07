@@ -90,12 +90,23 @@ regu = (sum(sum( Theta1(:, 2:end).^2)) + sum(sum( Theta2(:, 2:end) .^ 2))) * lam
 J += regu;
 
 
+Delta1 = zeros(size(Theta1));  
+Delta2 = zeros(size(Theta2));
+for t = 1:m,
+	delta3 = a3(:, t) - y_vect(:, t);
+	tmp = (Theta2' * delta3)(2:end, :);
+	delta2 =  tmp .* sigmoidGradient(z2(:, t));
+	Delta2 += delta3 * a2(:, t)';
+	Delta1 += delta2 * a1(t, :);
+end
 
 
+Theta2_grad = Delta2/m;
+Theta1_grad = Delta1/m;
 
 
-
-
+Theta2_grad(:, 2:end) = Theta2_grad(:, 2:end) .+ lambda/m*Theta2(:, 2:end);
+Theta1_grad(:, 2:end) = Theta1_grad(:, 2:end) .+ lambda/ m * Theta1(:, 2:end);
 
 
 
