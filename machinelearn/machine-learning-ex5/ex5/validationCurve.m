@@ -39,7 +39,20 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+% learningCurve(X, y, Xval, yval, lambda)
+for i = 1:length(lambda_vec)
+  lambda = lambda_vec(i);
+  % Compute train / val errors when training linear 
+  % regression with regularization parameter lambda
+  % You should store the result in error_train(i)
+  % and error_val(i)
 
+  	theta = trainLinearReg(X, y, lambda);
+	[J_train, grad_train] = linearRegCostFunction(X, y, theta, 0);
+	[J_val, grad_val] = linearRegCostFunction(Xval, yval, theta, 0);
+	error_train(i) = J_train;
+	error_val(i) = J_val;
+end
 
 
 
