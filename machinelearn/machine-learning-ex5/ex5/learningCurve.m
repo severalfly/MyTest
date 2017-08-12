@@ -54,20 +54,17 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 % theta = zeros( size(X, 2), 1);
-for i = 2:m-1,
+for i = 1:m,
 	X_train = X(1:i, :);
 	y_train = y(1:i);
-	X_val = X(i:end, :);
-	y_val = y(i:end);
+
 	theta = trainLinearReg(X_train, y_train, lambda);
-	J = 0.5 * m * sum( sum((theta' * X_train' - y_train) .^ 2));
-	error_train(i) = J;
+	[J_train, grad_train] = linearRegCostFunction(X_train, y_train, theta, 0);
+	[J_val, grad_val] = linearRegCostFunction(Xval, yval, theta, 0);
 
+	error_train(i) = J_train;
+	error_val(i) = J_val;
 
-	theta_val = trainLinearReg(X_val, y_val, lambda);
-	J_val = 0.5 * m * sum(sum((theta_val' * X_val'  - y_val) .^ 2 ));
-	% size(J_val)
-	error_val(i) = J_val - J;
 end
 % theta
 
