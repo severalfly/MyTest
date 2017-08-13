@@ -21,7 +21,22 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+% fprintf('size of X');
+% size(X)
+% size(centroids)
 
+features = size(X, 2);
+
+for i = 1: size(X,1),
+	closest = Inf;
+	for j = 1:K,
+		len = norm(X(i,:) - centroids(j,:)) ^ 2;
+		if len < closest,
+			closest = len;
+			idx(i) = j;
+		end
+	end
+end
 
 
 
