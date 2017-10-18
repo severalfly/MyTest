@@ -19,6 +19,7 @@ import com.leon.wechart.util.HttpServletRequestUtil;
 import com.leon.wechart.util.HttpUtil;
 import com.leon.wechart.util.LeonHttpClient;
 import com.leon.wechart.util.ObjectUtil;
+import com.leon.wechart.util.TrainUtil;
 
 public class WechartAction extends AbstractAction
 {
@@ -58,7 +59,12 @@ public class WechartAction extends AbstractAction
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
 						String content = "";
 						String wxCon = ObjectUtil.getString(s.get("Content"));
-						if (wxCon.endsWith("天气"))
+						if (TrainUtil.isTrainCode(wxCon))
+						{
+							// 用户输入了车次号
+							content = "您输入了：" + wxCon;
+						}
+						else if (wxCon.endsWith("天气"))
 						{
 							String str = WeatherService.getWeather(wxCon.substring(0, wxCon.indexOf("天气")));
 							JSONObject json = JSONObject.parseObject(str);
@@ -86,7 +92,7 @@ public class WechartAction extends AbstractAction
 					else if ("subscribe".equals(ObjectUtil.getString(s.get("MsgType"))))
 					{
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
-						wxMsg.setContent("您好，欢迎关注");
+						wxMsg.setContent("您好，欢迎关注，输入车次号查询火车正晚点信息");
 						result = WeChartService.getResult(wxMsg);
 					}
 				}

@@ -33,4 +33,5 @@ public class ObjectUtil
 		}
 		return Long.parseLong(getString(obj));
 	}
+
 }
