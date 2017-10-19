@@ -1,5 +1,8 @@
 package com.leon.wechart.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ObjectUtil
 {
 	public static boolean isNull(Object obj)
@@ -32,6 +35,16 @@ public class ObjectUtil
 			return 0;
 		}
 		return Long.parseLong(getString(obj));
+	}
+
+	/**
+	 * 获取当前日期
+	 * @return
+	 */
+	public static String getDay()
+	{
+		Date date = new Date();
+		return new SimpleDateFormat("yyyy-MM-hh").format(date);
 	}
 
 }

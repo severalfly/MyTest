@@ -1,14 +1,22 @@
 package com.leon.wechart.service;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.leon.wechart.util.LeonHttpClient;
+import com.leon.wechart.util.ObjectUtil;
 
 public class ZwdService
 {
@@ -57,6 +65,63 @@ public class ZwdService
 	@Test
 	public void testQuery()
 	{
-		System.out.println(query("上海虹桥", "G155", "2017-05-25"));
+		System.out.println(queryZWDV2("g9", "上海虹桥"));
+	}
+
+	public static String queryZWDV2(String trainCode, String station)
+	{
+		String deRes = "暂无正晚点信息";
+		if (ObjectUtil.isNull(station) || ObjectUtil.isNull(station.trim()))
+		{
+			return deRes;
+		}
+		try
+		{
+			String utf8Code = URLEncoder.encode(station, "utf-8").replaceAll("%", "-");
+			String gbCode = URLEncoder.encode(station, "gb2312");
+			String departdate = ObjectUtil.getDay();
+			String url = "http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/cx.jsp?cz=%s&cc=%s&cxlx=0&rq=%s&czEn=%s&tp=%s";
+			url = String.format(url, gbCode, trainCode, departdate, utf8Code, System.currentTimeMillis() - 10);
+			HttpGet httpGet = new HttpGet(url);
+			//HttpClient  
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+			try
+			{
+				//执行get请求  
+				HttpResponse httpResponse = httpClient.execute(httpGet);
+				//获取响应消息实体  
+				HttpEntity entity = httpResponse.getEntity();
+				//响应状态  
+				//判断响应实体是否为空  
+				if (entity != null)
+				{
+					//					System.out.println("response content:" + EntityUtils.toString(entity));
+					deRes = EntityUtils.toString(entity);
+				}
+			}
+			catch (IOException e)
+			{
+				logger.error("", e);
+			}
+			finally
+			{
+				try
+				{
+					//关闭流并释放资源  
+					httpClient.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+
+		}
+		catch (Exception e)
+		{
+			logger.error("", e);
+		}
+		return deRes;
+
 	}
 }

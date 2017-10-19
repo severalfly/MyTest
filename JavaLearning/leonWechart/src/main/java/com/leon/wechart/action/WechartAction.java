@@ -14,11 +14,13 @@ import com.leon.wechart.AbstractAction;
 import com.leon.wechart.bean.send.WxSendTextMsg;
 import com.leon.wechart.service.WeChartService;
 import com.leon.wechart.service.WeatherService;
+import com.leon.wechart.service.ZwdService;
 import com.leon.wechart.util.EncryptUtil;
 import com.leon.wechart.util.HttpServletRequestUtil;
 import com.leon.wechart.util.HttpUtil;
 import com.leon.wechart.util.LeonHttpClient;
 import com.leon.wechart.util.ObjectUtil;
+import com.leon.wechart.util.Pair;
 import com.leon.wechart.util.TrainUtil;
 
 public class WechartAction extends AbstractAction
@@ -35,6 +37,7 @@ public class WechartAction extends AbstractAction
 	public void wechart()
 	{
 		logger.info(HttpUtil.getParam(ServletActionContext.getRequest().getParameterMap()));
+		String result = "success";
 		try
 		{
 			TreeSet<String> set = new TreeSet<>();
@@ -46,7 +49,6 @@ public class WechartAction extends AbstractAction
 			{
 				msg += str;
 			}
-			String result = "success";
 			if (this.signature.equalsIgnoreCase(EncryptUtil.sha1(msg)))
 			{
 				result = this.echostr;
@@ -56,31 +58,17 @@ public class WechartAction extends AbstractAction
 					Map<String, Object> s = WeChartService.parseXmlToList2(param);
 					if ("text".equalsIgnoreCase(ObjectUtil.getString(s.get("MsgType"))))
 					{
+						String wxCon = ObjectUtil.getString(s.get("Content"));
+						logger.info("获取到微信文字消息：" + wxCon);
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
 						String content = "";
-						String wxCon = ObjectUtil.getString(s.get("Content"));
-						if (TrainUtil.isTrainCode(wxCon))
+						Pair<String, String> pair = checkZWDQuery(wxCon);
+						logger.info("" + JSONObject.toJSONString(pair));
+						if (pair != null)
 						{
-							// 用户输入了车次号
-							content = "您输入了：" + wxCon;
-						}
-						else if (wxCon.endsWith("天气"))
-						{
-							String str = WeatherService.getWeather(wxCon.substring(0, wxCon.indexOf("天气")));
-							JSONObject json = JSONObject.parseObject(str);
-							StringBuffer res = new StringBuffer("first");
-							if (json != null)
-							{
-								JSONObject resultJson = json.getJSONObject("result");
-								JSONObject realtime = resultJson.getJSONObject("realtime");// 实时来天气
-								JSONObject weather = realtime.getJSONObject("weather");
-								res = new StringBuffer();
-								res.append("天气：" + weather.getString("info") + "\n");
-								res.append("相对湿度：" + weather.getString("humidity") + "%\n");
-								res.append("温度：" + weather.getString("temperature"));
-								//								res.append("温度：" + weather.getString("temperature") + "\n");
-								content = res.toString();
-							}
+							//								String station = pair.right;
+							content = ZwdService.queryZWDV2(pair.left, pair.right);
+							//	http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/cx.jsp?cz=%C9%CF%BA%A3%BA%E7%C7%C5&cc=g9&cxlx=0&rq=2017-10-18&czEn=-E4-B8-8A-E6-B5-B7-E8-99-B9-E6-A1-A5&tp=1508333945052
 						}
 						else if (wxCon.equals("笑话"))
 						{
@@ -99,12 +87,41 @@ public class WechartAction extends AbstractAction
 				//				outputString(result);
 			}
 			logger.info("返回微信数据" + result);
-			outputString(result);
 		}
 		catch (Exception e)
 		{
 			logger.error("", e);
 		}
+		outputString(result);
+	}
+
+	/**
+	 * 返回是否是查询正晚点
+	 * @param msg
+	 * @return null 不符合正晚点输入格式；<车次号,车站>
+	 */
+	private Pair<String, String> checkZWDQuery(String msg)
+	{
+		if (ObjectUtil.isNull(msg) || ObjectUtil.isNull(msg.trim()))
+		{
+			return null;
+		}
+		if (msg.indexOf(" ") < 0)
+		{
+			logger.info("校验不含空格" + msg);
+			return null;
+		}
+		String[] tmp = msg.split(" ");
+		if (TrainUtil.isTrainCode(tmp[0]))
+		{
+			return new Pair<String, String>(tmp[0], tmp[1]);
+		}
+		else
+		{
+			logger.info("空格前不是车次号");
+			return null;
+		}
+
 	}
 
 	@Action(value = "/weather/queryWeather")
