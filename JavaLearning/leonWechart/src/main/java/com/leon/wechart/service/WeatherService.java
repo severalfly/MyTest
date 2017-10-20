@@ -2,6 +2,7 @@ package com.leon.wechart.service;
 
 import java.util.Random;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,5 +69,11 @@ public class WeatherService
 			logger.error("", e);
 		}
 		return null;
+	}
+
+	@Test
+	public void testGetLaugh()
+	{
+		System.out.println(getLaugh(10));
 	}
 }
