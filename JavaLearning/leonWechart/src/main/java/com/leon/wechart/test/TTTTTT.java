@@ -16,4 +16,5 @@ public class TTTTTT
 		System.out.println("-E5-8D-97-E4-BA-AC".replaceAll("-", "%"));
 		System.out.println(URLDecoder.decode("%E5%8D%97%E4%BA%AC", "utf-8"));
 	}
+
 }
