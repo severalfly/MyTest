@@ -48,8 +48,6 @@ public class EncryptUtil
 
 	private static byte[] iv = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-	private static final String suffix = "33224";
-
 	/**
 	 * MD5加密
 	 * @param origin 待加密字串
