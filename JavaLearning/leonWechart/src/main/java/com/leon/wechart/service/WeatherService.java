@@ -76,4 +76,25 @@ public class WeatherService
 	{
 		System.out.println(getLaugh(10));
 	}
+
+	public static String queryByTrain(String trainCode)
+	{
+		try
+		{
+			String url = "http://api.avatardata.cn/Train/QueryByTrain?key=e661c8f03b3b40bcb565f29059bcd7df&train=" + trainCode;
+			String r = LeonHttpClient.sendRequestUrl(url, null);
+			return r;
+		}
+		catch (Exception e)
+		{
+			logger.error("", e);
+		}
+		return "";
+	}
+
+	@Test
+	public void testQueryByTrain()
+	{
+		System.out.println(queryByTrain("g9"));
+	}
 }
