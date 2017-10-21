@@ -53,6 +53,7 @@ public class WechartAction extends AbstractAction
 			{
 				result = this.echostr;
 				String param = HttpServletRequestUtil.getParamFromRequestStream();
+				logger.info("收到微信公众号发来消息: " + param);
 				if (ObjectUtil.isNotNull(param))
 				{
 					Map<String, Object> s = WeChartService.parseXmlToList2(param);
@@ -70,6 +71,27 @@ public class WechartAction extends AbstractAction
 							content = ZwdService.queryZWDV2(pair.left, pair.right);
 							//	http://dynamic.12306.cn/mapping/kfxt/zwdcx/LCZWD/cx.jsp?cz=%C9%CF%BA%A3%BA%E7%C7%C5&cc=g9&cxlx=0&rq=2017-10-18&czEn=-E4-B8-8A-E6-B5-B7-E8-99-B9-E6-A1-A5&tp=1508333945052
 						}
+						if (wxCon.startsWith("天气") || wxCon.endsWith("天气"))
+						{
+							String str = WeatherService.getWeather(wxCon.replace("天气", "").trim());
+							if (ObjectUtil.isNotNull(str))
+							{
+
+								JSONObject json = JSONObject.parseObject(str);
+								StringBuffer res = new StringBuffer("first");
+								if (json != null)
+								{
+									JSONObject resultJson = json.getJSONObject("result");
+									JSONObject realtime = resultJson.getJSONObject("realtime");// 实时来天气
+									JSONObject weather = realtime.getJSONObject("weather");
+									res = new StringBuffer();
+									res.append("天气：" + weather.getString("info") + "\n");
+									res.append("相对湿度：" + weather.getString("humidity") + "%\n");
+									res.append("温度：" + weather.getString("temperature"));
+									content = res.toString();
+								}
+							}
+						}
 						else if (wxCon.equals("笑话"))
 						{
 							content = WeatherService.getLaugh(5);
@@ -80,7 +102,7 @@ public class WechartAction extends AbstractAction
 					else if ("subscribe".equals(ObjectUtil.getString(s.get("MsgType"))))
 					{
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
-						wxMsg.setContent("您好，欢迎关注，输入车次号查询火车正晚点信息");
+						wxMsg.setContent("您好，欢迎关注，输入车次号查询火车正晚点信息，如    G9 上海虹桥");
 						result = WeChartService.getResult(wxMsg);
 					}
 				}
