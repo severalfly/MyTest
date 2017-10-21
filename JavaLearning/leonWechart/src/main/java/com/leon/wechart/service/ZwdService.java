@@ -96,7 +96,7 @@ public class ZwdService
 				if (entity != null)
 				{
 					//					System.out.println("response content:" + EntityUtils.toString(entity));
-					deRes = EntityUtils.toString(entity);
+					deRes = EntityUtils.toString(entity).replaceAll("\n", "").replaceAll("\r", "");
 				}
 			}
 			catch (IOException e)
@@ -123,5 +123,20 @@ public class ZwdService
 		}
 		return deRes;
 
+	}
+
+	@Test
+	public void queryLeftTicket()
+	{
+		try
+		{
+			String url = "https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2017-10-21&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=CEH&purpose_codes=ADULT";
+			String data = LeonHttpClient.sendRequestUrl(url, null);
+			System.out.println(data);
+		}
+		catch (Exception e)
+		{
+			logger.error("", e);
+		}
 	}
 }
