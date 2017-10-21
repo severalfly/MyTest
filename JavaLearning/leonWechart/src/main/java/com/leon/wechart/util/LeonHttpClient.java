@@ -1,7 +1,6 @@
 package com.leon.wechart.util;
 
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -331,18 +330,6 @@ public class LeonHttpClient
 			}
 		}
 		return null;
-	}
-
-	public static void main(String[] args) throws Exception
-	{
-		//		String code = URLEncoder.encode("https://omeo.alipay.com/service/checkcode?sessionID=RZ04yq01FzRhI76kaAaiwd3RuYvMNymobileclientgwRZ04&type=lduc&r=0.49111253033250946&time=0", "UTF-8");
-		//		String url = "http://192.168.0.151:8080/trainnet/tool/updateIdentifyingCode.action?source=1&code="+code;
-		//		sendRequestUrl(url, null);
-
-		String code = URLEncoder.encode("https://omeo.alipay.com/service/checkcode?sessionID=RZ04yq01FzRhI76kaAaiwd3RuYvMNymobileclientgwRZ04&type=lduc&r=0.49111253033250946&time=0", "UTF-8");
-		String url = "http://jt.rsscc.com/traintool/tool/getIdentifyingCodeValue.action?codeId=744736165107777536";
-		System.out.println(sendRequestPostParamsStr("http://127.0.0.1:8080/trainnet/abc/smstest.action", "sdfsdfs", null));
-
 	}
 
 	public void addHeader(String key, String value)
