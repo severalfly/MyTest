@@ -11,7 +11,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +61,7 @@ public class ZwdService
 		return "";
 	}
 
-	@Test
+	//	@Test
 	public void testQuery()
 	{
 		System.out.println(queryZWDV2("g9", "上海虹桥"));
@@ -125,7 +124,7 @@ public class ZwdService
 
 	}
 
-	@Test
+	//	@Test
 	public void queryLeftTicket()
 	{
 		try

@@ -4,11 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import org.junit.Test;
-
 public class TTTTTT
 {
-	@Test
 	public void urlencode() throws UnsupportedEncodingException
 	{
 		System.out.println(URLEncoder.encode("南京", "gbk"));

@@ -2,7 +2,6 @@ package com.leon.wechart.service;
 
 import java.util.Random;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,7 +70,7 @@ public class WeatherService
 		return null;
 	}
 
-	@Test
+	//	@Test
 	public void testGetLaugh()
 	{
 		System.out.println(getLaugh(10));
@@ -92,7 +91,7 @@ public class WeatherService
 		return "";
 	}
 
-	@Test
+	//	@Test
 	public void testQueryByTrain()
 	{
 		System.out.println(queryByTrain("g9"));

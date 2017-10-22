@@ -11,7 +11,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
@@ -72,7 +71,7 @@ public class WeChartService
 		return new Pair<String, Integer>("", 0);
 	}
 
-	@Test
+	//	@Test
 	public void testUpdate()
 	{
 		System.out.println(updateWeChartAccessToken());
@@ -132,7 +131,7 @@ public class WeChartService
 		return "";
 	}
 
-	@Test
+	//	@Test
 	public void testSlash()
 	{
 		String ip = "121.51.130.64/27";
@@ -154,7 +153,7 @@ public class WeChartService
 		return updateWechartIps(24 * 60 * 60 * 1000l);
 	}
 
-	@Test
+	//	@Test
 	public void testWechartips()
 	{
 		System.out.println(getWechartIps());

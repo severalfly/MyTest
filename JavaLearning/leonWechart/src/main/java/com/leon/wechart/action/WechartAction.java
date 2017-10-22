@@ -5,7 +5,6 @@ import java.util.TreeSet;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -172,7 +171,7 @@ public class WechartAction extends AbstractAction
 		outputString(res.toString());
 	}
 
-	@Test
+	//	@Test
 	public void testqueryWeather() throws Exception
 	{
 		//		String url = "http://127.0.0.1:8080/leonWechart/weather/queryWeather.action?city=武汉";
