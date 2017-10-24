@@ -7,23 +7,27 @@ def convert(value):
 		value = '0'
 	return value
 
-conn = sqlite3.connect('foot.db')
+conn = sqlite3.connect('foot.sqlite3')
 curs = conn.cursor()
 
-# curs.execute('''
-# 	create table food(
-# 	id text primary key,
-# 	desc text,
-# 	water float,
-# 	kcal float,
-# 	protein float,
-# 	fat float,
-# 	ash float,
-# 	carbs float,
-# 	fiber float,
-# 	sugar float
-# 	)
-# 	''')
+try:
+
+	curs.execute('''
+		create table food(
+		id text primary key,
+		desc text,
+		water float,
+		kcal float,
+		protein float,
+		fat float,
+		ash float,
+		carbs float,
+		fiber float,
+		sugar float
+		)
+		''')
+except Exception as e:
+	print('data base is exist')
 query = 'insert into food(id, desc, water, kcal, protein, fat, ash) values(?,?,?,?,?,?,?)'
 field_count=7
 for line in open('ABBREV.txt'):
