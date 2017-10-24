@@ -4,6 +4,8 @@
 *.classpath
 *.metadata
 *.sqlite3
+*.pyc
+*.log
 *.jar
 .stackdump
 *.war
