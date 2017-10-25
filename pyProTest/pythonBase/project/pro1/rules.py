@@ -36,6 +36,7 @@ class ListItemRule(Rule):
 		handler.start(self.type)
 		handler.feed(block[1:].strip())
 		handler.end(self.type)
+		return True
 
 class ListRule(ListItemRule):
 	"""列表从不是列表项的块和随后的列表项之间，在最后一个连续列表项之后结束"""
