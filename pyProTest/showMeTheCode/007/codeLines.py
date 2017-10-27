@@ -7,17 +7,28 @@ import os.path
 
 def tree(directory):
     # print(os.listdir(directory))
+    x, y, z = 0,0,0
+
     for filename in os.listdir(directory):
         path = directory +'\\'+ filename
         if os.path.isdir(path):
 
             print('dir ' + path)
-            tree(path)
+            tt = tree(path)
+            x += tt[0]
+            y += tt[1]
+            z += tt[2]
         elif os.path.isfile(path):
-            print('file ' + path)
-            # lines(path)
+            if  path.endswith('.py') or path.endswith('.java') :
+
+                print('file ' + path)
+                tt = lines(path)
+                x += tt[0]
+                y += tt[1]
+                z += tt[2]
         else:
         	print('else ' + path)
+    return [x,y,z]
 
 def lines(filename):
     file = open(filename, mode='r', buffering=-1, encoding='utf-8', errors=None, newline=None, closefd=True)
@@ -41,12 +52,12 @@ def lines(filename):
         else:
             x += 1
 
-    return (x,y,z)
+    return [x,y,z]
 
 
 
 if __name__ == '__main__':
-	# tree('.')
-    # tree(r'D:\\leontest\\MyTest\\pyProTest\\pythonBase')
-    print(lines('D:\\leontest\\MyTest\\pyProTest\\showMeTheCode\\007\\test.java'))
+	# print(tree('.'))
+    print(tree(r'D:\\leontest\\MyTest\\pyProTest'))
+    # print(lines('D:\\leontest\\MyTest\\pyProTest\\showMeTheCode\\007\\test.java'))
     # print(str('aaaatta').index('tt'))
