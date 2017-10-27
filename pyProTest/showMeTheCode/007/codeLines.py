@@ -28,15 +28,15 @@ def lines(filename):
         line = line.strip()
         if not line:
             z +=1
-        elif inside:
-            y +=1
-        elif str(line).find('/*') > 0:
+        elif str(line).find('/*') > -1:
             y += 1
             inside = True
-        elif str(line).find('*/') > 0:
+        elif str(line).find('*/') > -1:
             y +=1
             inside = False
-        elif str(line).find('//') > 0:
+        elif inside:
+            y +=1
+        elif str(line).find('//') > -1:
             y += 1
         else:
             x += 1
