@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -132,6 +133,19 @@ public class ZwdService
 			String url = "https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2017-10-21&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=CEH&purpose_codes=ADULT";
 			String data = LeonHttpClient.sendRequestUrl(url, null);
 			System.out.println(data);
+		}
+		catch (Exception e)
+		{
+			logger.error("", e);
+		}
+	}
+
+	public void testQueryTrain()
+	{
+		try
+		{
+			String str = "g9上海虹桥";
+			Pattern patter = Pattern.compile("");
 		}
 		catch (Exception e)
 		{

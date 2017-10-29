@@ -62,7 +62,7 @@ public class WechartAction extends AbstractAction
 						logger.info("获取到微信文字消息：" + wxCon);
 						WxSendTextMsg wxMsg = new WxSendTextMsg(ObjectUtil.getString(s.get("FromUserName")), ObjectUtil.getString(s.get("ToUserName")), System.currentTimeMillis());
 						String content = "";
-						Pair<String, String> pair = checkZWDQuery(wxCon);
+						Pair<String, String> pair = TrainUtil.getTrainCodeStating(wxCon);
 						logger.info("" + JSONObject.toJSONString(pair));
 						if (pair != null)
 						{

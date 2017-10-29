@@ -1,5 +1,6 @@
 package com.leon.wechart.util;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TrainUtil
@@ -15,13 +16,35 @@ public class TrainUtil
 		return trainPattern.matcher(trainCode).matches();
 	}
 
-	public static boolean containsTrain(String str)
+	public static String containsTrain(String str)
 	{
 		if (ObjectUtil.isNull(str))
 		{
-			return false;
+			return "";
 		}
-		return trainPattern.matcher(str).find();
+		Matcher matcher = trainPattern.matcher(str);
+		if (matcher.find())
+		{
+			return matcher.group(1);
+		}
+		else
+		{
+			return "";
+		}
 	}
 
+	public static Pair<String, String> getTrainCodeStating(String str)
+	{
+		String trainCode = containsTrain(str);
+		if (ObjectUtil.isNull(trainCode))
+		{
+			return null;
+		}
+		String station = str.replace(trainCode, "");
+		if (ObjectUtil.isNull(station.trim()))
+		{
+			return null;
+		}
+		return new Pair<String, String>(trainCode, station.trim());
+	}
 }

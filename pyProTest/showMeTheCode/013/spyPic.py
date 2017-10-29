@@ -3,8 +3,8 @@
 import urllib.request as req
 import re
 
-# url = 'http://tieba.baidu.com/p/2166231880'
-url = 'http://tieba.baidu.com/p/5311516307'
+url = 'http://tieba.baidu.com/p/2166231880'
+# url = 'http://tieba.baidu.com/p/5311516307'
 conn = req.urlopen(url)
 html = conn.readlines()
 s = ''
