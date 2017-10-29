@@ -8,6 +8,10 @@
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<constant name="struts.locale" value="zh_CN"></constant>
 
+	<constant name="struts.convention.result.path" value="/view/" />                <!-- 搜索视图资源的路径 -->
+	<constant name="struts.convention.action.name.separator"
+		value="_" /> <!-- Action类名分隔符 -->
+
 	<constant name="struts.convention.classes.reload" value="false" />               <!-- convention类重加载 -->
 	<constant name="struts.convention.action.suffix" value="Action" />              <!-- Action后缀名 -->
 	<constant name="struts.action.extension" value="action,do,html,htm,php,aspx" /> <!-- Action扩展名 -->
@@ -22,6 +26,7 @@
 			<interceptor-stack name="mydefault">
 				<!-- struts2默认的拦截器栈 -->
 				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="timer" />
 				<interceptor-ref name="logInterceptor" />
 			</interceptor-stack>
 		</interceptors>

@@ -5,8 +5,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSONObject;
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
@@ -18,8 +16,9 @@ public class LogInterceptor extends AbstractInterceptor
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception
 	{
-		logger.info(new Date() + " request " + JSONObject.toJSONString(invocation));
-		return Action.SUCCESS;
+		logger.info(new Date() + " request  ");
+		return invocation.invoke();
+		//		return Action.SUCCESS;
 	}
 
 }
