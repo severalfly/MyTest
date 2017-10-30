@@ -7,24 +7,30 @@ import os.path
 
 def tree(directory):
     # print(os.listdir(directory))
-    x,y,z = (0,0,0)
+
+    x, y, z = 0,0,0
     for filename in os.listdir(directory):
         path = directory +'\\'+ filename
         if os.path.isdir(path):
 
             print('dir ' + path)
-            tree(path)
+            tt = tree(path)
+            x += tt[0]
+            y += tt[1]
+            z += tt[2]
         elif os.path.isfile(path):
-            if not path.endswith('.py') or path.endswith('.java') or path.endswith('.c'):
-                continue
-            print('file ' + path)
-            x1, y1, z1 = lines(path)
-            print(x + x1,y + y1,z + z1)
-            # return x , y, z
-            return x + x1,y + y1,z + z1
+
+            if  path.endswith('.py') or path.endswith('.java') :
+
+                print('file ' + path)
+                tt = lines(path)
+                x += tt[0]
+                y += tt[1]
+                z += tt[2]
         else:
         	print('else ' + path)
-        # return res
+    return [x,y,z]
+
 
 def lines(filename):
     file = open(filename, mode='r', buffering=-1, encoding='utf-8', errors=None, newline=None, closefd=True)
@@ -34,25 +40,29 @@ def lines(filename):
         line = line.strip()
         if not line:
             z +=1
-        elif str(line).find('/*') >= 0:
+
+        elif str(line).find('/*') > -1:
             y += 1
             inside = True
-        elif str(line).find('*/') >= 0:
+        elif str(line).find('*/') > -1:
             y +=1
             inside = False
         elif inside:
             y +=1
-        elif str(line).find('//') >= 0 or str(line).startswith('#'):
+
+        elif str(line).find('//') > -1:
             y += 1
         else:
             x += 1
 
-    return x,y,z
+
+    return [x,y,z]
 
 
 
 if __name__ == '__main__':
-    print(tree('.'))
-    # tree(r'D:\\learning\\MyTest\\pyProTest\\showMeTheCode')
-    # print(lines('test.java'))
+
+	# print(tree('.'))
+    print(tree(r'D:\\leontest\\MyTest\\pyProTest'))
+    # print(lines('D:\\leontest\\MyTest\\pyProTest\\showMeTheCode\\007\\test.java'))
     # print(str('aaaatta').index('tt'))
