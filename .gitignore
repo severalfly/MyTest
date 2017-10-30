@@ -9,6 +9,9 @@
 *.jar
 .stackdump
 *.war
+*.hprof
+*.index
+*.threads
 webProject/exam/target/*
 jvmLearning/target/*
 springLearning/spring-book-ch2/target/*

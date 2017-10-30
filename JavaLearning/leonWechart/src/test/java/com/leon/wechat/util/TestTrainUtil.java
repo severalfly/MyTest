@@ -26,4 +26,6 @@ public class TestTrainUtil
 		System.out.println(TrainUtil.containsTrain("测试"));
 		System.out.println("done");
 	}
+
+
 }
