@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadAndWrite
 {
@@ -24,6 +26,7 @@ public class ReadAndWrite
 
 	public int getIn()
 	{
+		List<String> s = new ArrayList<>();
 		return this.in;
 	}
 
