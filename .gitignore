@@ -12,6 +12,7 @@
 *.hprof
 *.index
 *.threads
+*.iml
 webProject/exam/target/*
 jvmLearning/target/*
 springLearning/spring-book-ch2/target/*
