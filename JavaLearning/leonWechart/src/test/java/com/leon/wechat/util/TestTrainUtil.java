@@ -1,12 +1,10 @@
 package com.leon.wechat.util;
 
-import org.junit.Test;
-
 import com.leon.wechart.util.TrainUtil;
 
 public class TestTrainUtil
 {
-	@Test
+	//	@Test
 	public void testIsTrainCode()
 	{
 		//		System.out.println(TrainUtil.isTrainCode("T122"));
@@ -16,7 +14,7 @@ public class TestTrainUtil
 		//		System.out.println(TrainUtil.isTrainCode(""));
 	}
 
-	@Test
+	//	@Test
 	public void testContainsTraincode()
 	{
 		System.out.println(TrainUtil.containsTrain("测TT1试"));
