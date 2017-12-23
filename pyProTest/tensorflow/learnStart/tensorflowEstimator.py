@@ -3,17 +3,35 @@ import tensorflow as tf
 # numpy is often used to load, manipulate and preprocess data
 import numpy as np
 
+'''
+自定义模型函数，用于比较复杂的方法
+'''
+def model_fn(features, labels, mode):
+    W = tf.get_variable("W", [1], dtype=tf.float64)
+    b = tf.get_variable("b", [1], dtype=tf.float64)
+    y = W * features['x'] + b
+
+    loss = tf.reduce_sum(tf.square(y - labels))
+
+    global_step = tf.train.get_global_step()
+    optimizer = tf.train.GradientDescentOptimizer(0.01)
+    train = tf.group(optimizer.minimize(loss), tf.assign_add(global_step, 1))
+
+    return tf.estimator.EstimatorSpec(mode = mode, predictions = y, loss = loss, train_op = train)
+
 # declare list of features. we only have one numeric feature. there are many
 # other types of columns that are more complicated and useful
-feature_column = [tf.feature_column.numeric_column("x", shape=[1])]
+
+# feature_column = [tf.feature_column.numeric_column("x", shape=[1])]
 
 
 # An estimator is the fromt end to invoke training (fitting) and evaluation
 # (inference). There are many predefined types like linear regression,
 # linear classification, and many neural network classifiers an regressors
 # The following code provides an estimator that does linear regression
-estimator = tf.estimator.LinearRegressor(feature_columns=feature_column)
+# estimator = tf.estimator.LinearRegressor(feature_columns=feature_column)
 
+estimator = tf.estimator.Estimator(model_fn=model_fn)
 
 # TensorFlow provides many helper methods to read and set up data sets
 # Here we use two data sets: one for training and one for evaluation
