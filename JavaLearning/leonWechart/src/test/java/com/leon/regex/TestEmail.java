@@ -16,5 +16,10 @@ public class TestEmail
 		//		System.out.println(matcher.group(2));
 		//		System.out.println(matcher.group(3));
 		System.out.println(matcher.replaceAll("$1#$2"));
+		//		StringUtils.equalsIgnoreCase(str1, str2)
+
+		System.out.println(System.nanoTime());
+		System.out.println(System.currentTimeMillis());
+
 	}
 }
