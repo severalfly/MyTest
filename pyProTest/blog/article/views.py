@@ -31,6 +31,8 @@ def add(request):
         new.save()
     return render_to_response('add.html',{'method_str':request.method})
 
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
 
 
 
