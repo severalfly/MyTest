@@ -8,7 +8,7 @@ from xpinyin import Pinyin
  
 #map:将str函数作用于后面序列的每一个元素
 # numbers = ''.join(map(str, range(10)))
-numbers = '下面的代码是使用生成图片验证码然后结合返回给前端显示指定字体路径这里使用原版字体运行程序打开浏览器访问'
+numbers = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 chars = ''.join((numbers)) 
  
 def create_validate_code(size=(120, 30), 
