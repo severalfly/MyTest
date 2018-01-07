@@ -17,6 +17,13 @@ import com.leon.wechart.schedule.test.TestThreadLocalWorker;
 
 public class TTTTTT
 {
+
+	@Test
+	public void testtt()
+	{
+		System.out.println(Long.toString(Long.MAX_VALUE, 16));
+		System.out.println(Long.parseLong("691000fe6edc12ed", 16));
+	}
 	//	@Test
 	public void urlencode() throws UnsupportedEncodingException
 	{
@@ -127,4 +134,3 @@ class TestHashMap<K, V> extends LinkedHashMap<K, V>
 		return size() > TestHashMap.this.cacheSize;
 	}
 }
-
