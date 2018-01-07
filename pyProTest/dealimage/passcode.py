@@ -99,7 +99,7 @@ def get_code():
 if __name__ == "__main__": 
     basePath = 'D:/tmp/imageTrain/'
     p = Pinyin();
-    for x in range(50000):
+    for x in range(3000):
       # app.run(host="localhost",port=18888,debug=True)
       code_img,strs = create_validate_code(length=1,size=(50,50), font_size=random.randint(20,30)) 
       pin = p.get_pinyin(strs)
