@@ -92,7 +92,7 @@ def main():
     )
     mnist_classifier.train(
         input_fn=train_input_fn,
-        steps=2000,
+        steps=20000,
         hooks=[logging_hook])
 
     eval_input_fn = tf.estimator.inputs.numpy_input_fn(
