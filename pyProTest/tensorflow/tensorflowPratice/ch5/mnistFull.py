@@ -71,15 +71,16 @@ def train(mnist):
         mnist.train.num_examples / BATCH_SIZE,
         LEARNING_RATE_DECAY
     )    
-train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=gllbal_step)
+    train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=gllbal_step)
 
 
-with tf.control_dependencies([train_step, variables_averages_op]):
-    train_op = tf.no_op(name='train')
-correct_prection = tf.equal(tf.cast(correct_prection, tf.float32))
+    with tf.control_dependencies([train_step, variable_averages_op]):
+        train_op = tf.no_op(name='train')
+    correct_prection = tf.equal(tf.argmax(average_y, 1), tf.argmax(y_,1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prection, tf.float32))
 
 with tf.Session() as sess:
-    tf.initialize_all_tables().run()
+    tf.tables_initializer().run()
     validate_feed = {x: mnist.validation.images, y_:mnist.validation.labels}
     test_feed = {x:mnist.test.images, y_:mnist.test.labels}
     for i in range(TRAINING_STEPS):
