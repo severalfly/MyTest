@@ -57,7 +57,7 @@ def train(mnist):
         x, variable_averages, weights1, biases1, weights2, biases2
     )
 
-    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(y, tf.argmax(y_, 1))
+    cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits = y, labels = tf.argmax(y_, 1))
     cross_entropy_mean = tf.reduce_mean(cross_entropy)
 
     # regularizere = tf.contrib.l
@@ -71,7 +71,7 @@ def train(mnist):
         mnist.train.num_examples / BATCH_SIZE,
         LEARNING_RATE_DECAY
     )    
-    train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=gllbal_step)
+    train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)
 
 
     with tf.control_dependencies([train_step, variable_averages_op]):
@@ -79,22 +79,23 @@ def train(mnist):
     correct_prection = tf.equal(tf.argmax(average_y, 1), tf.argmax(y_,1))
     accuracy = tf.reduce_mean(tf.cast(correct_prection, tf.float32))
 
-with tf.Session() as sess:
-    tf.tables_initializer().run()
-    validate_feed = {x: mnist.validation.images, y_:mnist.validation.labels}
-    test_feed = {x:mnist.test.images, y_:mnist.test.labels}
-    for i in range(TRAINING_STEPS):
-        if i % 100 ==0:
-            validate_acc = sess.run(accuracy, feed_dict=validate_feed)
-            print("After %d training step(s), validation accuracy using avarage model is %g " %(i , validate_acc))
-        xs, ys = mnist.train.next_batch(BATCH_SIZE)
-        sess.run(train_op, feed_dict={x:xs, y_:ys})
-    test_acc =sess.run(accuracy, feed_dict=test_feed)
-    print('After %d training step(s), test accuracy usering average model is %g' %(TRAINING_STEPS, test_acc))
+    with tf.Session() as sess:
+        tf.tables_initializer().run()
+        validate_feed = {x: mnist.validation.images, y_:mnist.validation.labels}
+        test_feed = {x:mnist.test.images, y_:mnist.test.labels}
+        for i in range(TRAINING_STEPS):
+            if i % 100 ==0:
+                validate_acc = sess.run(accuracy, feed_dict=validate_feed)
+                print("After %d training step(s), validation accuracy using avarage model is %g " %(i , validate_acc))
+            xs, ys = mnist.train.next_batch(BATCH_SIZE)
+            sess.run(train_op, feed_dict={x:xs, y_:ys})
+        test_acc =sess.run(accuracy, feed_dict=test_feed)
+        print('After %d training step(s), test accuracy usering average model is %g' %(TRAINING_STEPS, test_acc))
 
 
-def main():
+def main(argv=None):
     mnist = input_data.read_data_sets('/tmp/data', one_hot=True)
+    train(mnist)
 
 if __name__ == '__main__':
     tf.app.run()
