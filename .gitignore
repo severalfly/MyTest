@@ -29,3 +29,7 @@ JavaLearning/image/src/main/resources/qiniu.properties
 machinelearn/machine-learning-ex7/ex7/ex7faces.mat
 *ubyte.gz
 **settings.json
+
+**.iml
+**/target/
+.settings
