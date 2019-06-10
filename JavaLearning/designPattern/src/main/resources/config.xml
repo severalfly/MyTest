@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<chartType>pie</chartType>
+	<chartType>line</chartType>
 	<shapeType>circle</shapeType>
 	<factoryMethod>com.leon.artofpattern.factorymethod.DatabaseLoggerFactory</factoryMethod>
 	<factoryMethodExercise>com.leon.artofpattern.factorymethod.exercise.JPGPicReader</factoryMethodExercise>

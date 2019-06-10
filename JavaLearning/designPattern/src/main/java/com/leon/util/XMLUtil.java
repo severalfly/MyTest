@@ -2,23 +2,26 @@ package com.leon.util;
 
 import java.io.File;
 
+import javax.annotation.Resource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XMLUtil
 {
-	private static final String configPath = "target/classes/config.xml";
+	private static final String configPath = "config.xml";
 	public static String getCharttype()
 	{
 		try
 		{
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = dFactory.newDocumentBuilder();
-			Document doc = builder.parse(new File(configPath));
+			ClassPathResource resource = new ClassPathResource(configPath);
+			Document doc = builder.parse(resource.getInputStream());
 
 			NodeList nl = doc.getElementsByTagName("chartType");
 			Node classNode = nl.item(0).getFirstChild();
