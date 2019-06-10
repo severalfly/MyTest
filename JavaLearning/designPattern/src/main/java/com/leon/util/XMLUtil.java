@@ -46,7 +46,8 @@ public class XMLUtil
 		{
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = dFactory.newDocumentBuilder();
-			Document doc = builder.parse(new File(configPath));
+			ClassPathResource resource = new ClassPathResource(configPath);
+			Document doc = builder.parse(resource.getInputStream());
 
 			NodeList nl = doc.getElementsByTagName(className);
 			Node classNode = nl.item(0).getFirstChild();
