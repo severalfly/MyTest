@@ -33,3 +33,5 @@ machinelearn/machine-learning-ex7/ex7/ex7faces.mat
 **.iml
 **/target/
 .settings
+
+.idea
