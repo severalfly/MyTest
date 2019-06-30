@@ -10,8 +10,12 @@ public abstract class Ch8ActorBuilder
 
 	public abstract void buildFace();
 
-	public Ch8Actor getResult()
+	public Ch8Actor construct()
 	{
+		this.buildType();
+		this.buildSex();
+		this.buildFace();
+
 		return product;
 	}
 
