@@ -9,6 +9,7 @@
 	<abstractFactoryMethodv2>com.leon.artofpatternv2.ch6abstractfactory.SpringSkinFactory</abstractFactoryMethodv2>
 	<abstractFactoryMethodExercise>com.leon.artofpattern.abstractfactory.exercise.IosFactory</abstractFactoryMethodExercise>
 	<builderPattern>com.leon.artofpattern.builder.DevilBuilder</builderPattern>
+	<builderPatternv2>com.leon.artofpatternv2.ch8Build.Ch8HeroBuilder</builderPatternv2>
 	<builderExercisePattern>com.leon.artofpattern.builder.exercise.MemoryModle</builderExercisePattern>
 	<adapterName>com.leon.artofpattern.adapter.OperationAdapter</adapterName>
 
