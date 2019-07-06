@@ -12,6 +12,7 @@
 	<builderPatternv2>com.leon.artofpatternv2.ch8Build.Ch8HeroBuilder</builderPatternv2>
 	<builderExercisePattern>com.leon.artofpattern.builder.exercise.MemoryModle</builderExercisePattern>
 	<adapterName>com.leon.artofpattern.adapter.OperationAdapter</adapterName>
+	<adapterNamev2>com.leon.artofpatternv2.ch9adapter.Ch9OperationAdapter</adapterNamev2>
 
 	<bridgeImage>com.leon.artofpattern.bridge.JPGImage</bridgeImage>
 	<bridgeImp>com.leon.artofpattern.bridge.LinuxImp</bridgeImp>
