@@ -4,6 +4,7 @@ public class Ch12DecoratorClient
 {
 	public static void main(String[] args)
 	{
+		// 此处可修改为 TextBox 或者 ListBox
 		Component component = new Window();
 		Component componentSb = new ScrollBarDecorator(component);
 
