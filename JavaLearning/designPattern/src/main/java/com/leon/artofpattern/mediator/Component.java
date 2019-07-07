@@ -1,6 +1,6 @@
 package com.leon.artofpattern.mediator;
 
-public abstract class Component
+abstract class Component
 {
 	protected Mediator mediator;
 

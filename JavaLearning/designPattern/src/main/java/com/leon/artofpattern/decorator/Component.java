@@ -1,6 +1,6 @@
 package com.leon.artofpattern.decorator;
 
-public abstract class Component
+abstract class Component
 {
 	public abstract void display();
 }
