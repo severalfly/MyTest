@@ -3,6 +3,9 @@ package com.leon.artofpatternv2.ch21memento;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Setter
 @Getter
 public class Ch21MementoClient
@@ -12,15 +15,18 @@ public class Ch21MementoClient
 		MementoCaretaker caretaker = new MementoCaretaker();
 		Chessmen chess = new Chessmen("car", 1, 1);
 		display(chess);
-		caretaker.setMemento(chess.save());
+		caretaker.getMementos().add(chess.save());
 		chess.setY(4);
 		display(chess);
-		caretaker.setMemento(chess.save());
-		display(chess);
+		caretaker.getMementos().add(chess.save());
 		chess.setX(5);
 		display(chess);
+		caretaker.getMementos().add(chess.save());
 		System.out.println("---悔棋---");
-		chess.restore(caretaker.getMemento());
+		chess.restore(caretaker.getMementos());
+		display(chess);
+		chess.restore(caretaker.getMementos());
+		display(chess);		chess.restore(caretaker.getMementos());
 		display(chess);
 	}
 
@@ -72,6 +78,15 @@ class Chessmen
 		this.y = memento.getY();
 	}
 
+	public void restore(List<ChessmanMemento> mementos)
+	{
+		ChessmanMemento memento = mementos.get(mementos.size() - 1);
+		this.label = memento.getLabe();
+		this.x = memento.getX();
+		this.y = memento.getY();
+		mementos.remove(mementos.size() - 1);
+	}
+
 }
 
 @Setter
@@ -94,6 +109,11 @@ class ChessmanMemento
 @Getter
 class MementoCaretaker
 {
-	private ChessmanMemento memento;
+	private List<ChessmanMemento> mementos;
+
+	public MementoCaretaker()
+	{
+		this.mementos = new ArrayList<>();
+	}
 
 }
