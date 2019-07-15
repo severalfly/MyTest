@@ -14,13 +14,13 @@ public class Ch22OvserverClient
 	{
 		ConcreteAllyControlCenter center = new ConcreteAllyControlCenter("金庸群侠传");
 
-		Observer p1 = new Player("杨过");
+		Observer11 p1 = new Player11("杨过");
 		center.join(p1);
-		Observer p2 = new Player("令狐冲");
+		Observer11 p2 = new Player11("令狐冲");
 		center.join(p2);
-		Observer p3 = new Player("张无忌");
+		Observer11 p3 = new Player11("张无忌");
 		center.join(p3);
-		Observer p4 = new Player("段誉");
+		Observer11 p4 = new Player11("段誉");
 		center.join(p4);
 
 		p2.beAttacked(center);
@@ -30,7 +30,7 @@ public class Ch22OvserverClient
 /**
  * 抽象观察类
  */
-interface Observer
+interface Observer11
 {
 	public String getName();
 
@@ -42,11 +42,11 @@ interface Observer
 	public void beAttacked(AllControlCenter center);
 }
 
-class Player implements Observer
+class Player11 implements Observer11
 {
 	private String name;
 
-	public Player(String name)
+	public Player11(String name)
 	{
 		this.name = name;
 	}
@@ -83,15 +83,15 @@ class Player implements Observer
 abstract class AllControlCenter
 {
 	protected String allyName;
-	protected List<Observer> players = new ArrayList<>();
+	protected List<Observer11> players = new ArrayList<>();
 
-	public void join(Observer obs)
+	public void join(Observer11 obs)
 	{
 		System.out.println(obs.getName() + " 加入 " + this.allyName + " 战队！");
 		this.players.add(obs);
 	}
 
-	public void quit(Observer obs)
+	public void quit(Observer11 obs)
 	{
 		System.out.println(obs.getName() + " 退出 " + this.allyName + " 战队！");
 	}
@@ -112,7 +112,7 @@ class ConcreteAllyControlCenter extends AllControlCenter
 	public void notifyObserver(String name)
 	{
 		System.out.println(this.allyName + "战队紧急通知，盟友" + name + "遭受敌人攻击！");
-		for (Observer obs : players)
+		for (Observer11 obs : players)
 		{
 			if(!obs.getName().equalsIgnoreCase(name))
 			obs.help();
